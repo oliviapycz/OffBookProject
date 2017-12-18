@@ -6,7 +6,7 @@
 
 ### 1 - Maquetter une Application
   > Réalisation du wireframe et de la maquette du projet
-  > Réalisation des User Stories, des UseCase et des Diagrammes de Séquences
+  > - Réalisation des User Stories, des UseCase et des Diagrammes de Séquences
 
 ### 2 - Concevoir une BDD
   > Réalisation du Diagramme de classes
@@ -26,6 +26,6 @@
 
 ### 7 - Mettre en oeuvre une solution de gestion de contenu ou e-commerce
   > WORDPRESS/DRUPAL
-  
+
 ### 8 - Mobilité numérique
   > Rendre l'application responsive avec l'utilisation de MEDIAQUERIES, SASS, BOOTSTRAP

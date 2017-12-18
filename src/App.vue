@@ -1,13 +1,21 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
+  <div id="app" class="container-fluid">
+    <app-navbar></app-navbar>
     <router-view/>
+    <app-footer></app-footer>
   </div>
 </template>
 
 <script>
+import Footer from './components/Footer';
+import NavBar from './components/NavBar';
+
 export default {
   name: 'app',
+  components: {
+    appFooter: Footer,
+    appNavbar: NavBar,
+  },
 };
 </script>
 
@@ -16,8 +24,10 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+.container-fluid, .row {
+  padding: inherit !important;
+  margin: inherit !important;
 }
 </style>
