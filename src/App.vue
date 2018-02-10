@@ -1,8 +1,8 @@
 <template>
   <div id="app" class="container-fluid">
-    <app-navbar></app-navbar>
-    <router-view/>
-    <app-footer></app-footer>
+    <app-navbar :id_user="id_user" @setIdUser="id_user = $event"></app-navbar>
+    <router-view :id_user="id_user"></router-view>
+    <!-- <app-footer id="footer"></app-footer> -->
   </div>
 </template>
 
@@ -16,6 +16,15 @@ export default {
     appFooter: Footer,
     appNavbar: NavBar,
   },
+  data() {
+    return {
+      id_user: this.$store.state.id_user,
+    };
+  },
+  created() {
+    this.$store.dispatch('tryAutoLogin');
+    console.log('[app]', this.id_user);
+  },
 };
 </script>
 
@@ -25,9 +34,16 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  width: 100%;
 }
 .container-fluid, .row {
   padding: inherit !important;
   margin: inherit !important;
 }
+/*#navbar {
+  margin-bottom: 30px;
+}
+#footer {
+  margin-top: 30px;
+}*/
 </style>

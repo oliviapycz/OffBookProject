@@ -1,56 +1,49 @@
-const connection = require('./db.js')
+const db= require('./db.js')
+const { encode } = require('../auth/pwd.js')
+
+
 
 module.exports = {
 
-  getUsers(callback) {
-    function queryCallback (err, result, fields){
-      if (err) throw err;
-      callback(result);
-    }
-    return connection.query('SELECT * from users', queryCallback)
-  }
+  getUsers() {
+    return db.connectQuery('SELECT * from users')
+  },
 
-  // addUsers(callback) {
-  //   function queryCallback (err, result, fields){
-  //     if (err) throw err;
-  //     callback(result);
-  //   }
-  //   return connection.query('SELECT * from users', queryCallback)
-  // }
-  //
-  // updateUsers(callback) {
-  //   function queryCallback (err, result, fields){
-  //     if (err) throw err;
-  //     callback(result);
-  //   }
-  //   return connection.query('SELECT * from users', queryCallback)
-  // }
-  //
-  // deleteUsers(callback) {
-  //   function queryCallback (err, result, fields){
-  //     if (err) throw err;
-  //     callback(result);
-  //   }
-  //   return connection.query('SELECT * from users', queryCallback)
-  // }
+  getUserById(id_user) {
+    return db.connectQuery(`SELECT * from users WHERE id_user = '${id_user}'`)
+  },
 
-  // createUser(name_user, email_user, password_user, picture_user) {
-  //   return connection.query(`INSERT INTO users(id, name_user, email_user, password_user, picture_user) VALUES (DEFAULT, '${name_user}', '${email_user}', '${password_user}', '${picture_user}');`)
-  // },
+  getUsernames() {
+    return db.connectQuery(`SELECT username from users`)
+  },
 
-  // getUserById(id) {
-  //   return connection.query(`SELECT * from users WHERE id= '${id}';`)
-  // }
+  getUserByUsername(username) {
+    return db.connectQuery(`SELECT * from users WHERE username = '${username}'`)
+  },
 
+  getEmails() {
+    return db.connectQuery(`SELECT email_user from users`)
+  },
 
-  // updateUser(id, prenom, nom) {
-  //   return connection.query(`UPDATE users SET prenom = '${prenom}', nom = '${nom}' WHERE id= ${id};`)
-  // },
-  //
-  // deleteUser(id) {
-  //   return connection.query(`DELETE FROM users WHERE id= ${id};`)
-  // },
-  // getTodosByUserId(id) {
-  //   return connection.query(`SELECT todos.name from todos INNER JOIN users_todos ON user_id=${id} AND todos.id = todo_id;`)
-  // }
+  getUserByEmail(email_user) {
+    return db.connectQuery(`SELECT * from users WHERE email_user = '${email_user}'`)
+  },
+
+  addUser({username, email_user, password_user, picture_path_user}) {
+      return encode(password_user).then(hashPwd => {
+        db.connectQuery(`INSERT INTO
+        users(
+          username,
+          email_user,
+          password_user,
+          picture_path_user
+      ) VALUES(
+          '${username}',
+          '${email_user}',
+          '${hashPwd}',
+          '${picture_path_user}'
+      )`)
+    })
+  },
+
 }

@@ -3,45 +3,55 @@
     <form class="col-md-4 " @submit.prevent="onSubmit">
       <fieldset>
         <legend> Register</legend>
-        <div class="form-group">
+        <div class="form-group input" :class="{invalid: $v.username.$error}">
           <label for="username">Username :</label>
           <input
             type="text"
             id="username"
             class="form-control"
             v-model="username"
-            required
+            @blur="$v.username.$touch()"
             placeholder="bouquiquineuse">
+            <p v-if="!$v.username.required">This field must not be empty</p>
+            <p v-if="!$v.username.minLen">You're username should have at least {{ $v.username.$params.minLen.min }} characters.</p>
+            <p v-if="!$v.username.unique">This username is already taken.</p>
         </div>
-        <div class="form-group">
+        <div class="form-group input" :class="{invalid: $v.email.$error}">
           <label for="email">Email Address :</label>
           <input
             type="email"
             id="email"
             class="form-control"
             v-model="email"
-            required
+            @blur="$v.email.$touch()"
             placeholder="bouquiquineuse@offbooks.com">
+            <p v-if="$v.email.$error || !$v.email.email">Please provide a valid email address</p>
+            <p v-if="!$v.email.required">This field must not be empty</p>
+            <p v-if="!$v.email.unique">This email address is already taken.</p>
         </div>
-        <div class="form-group">
+        <div class="form-group input" :class="{invalid: $v.password.$error}">
           <label for="password">Password :</label>
           <input
             type="password"
             id="password"
             class="form-control"
+            @blur="$v.password.$touch()"
             v-model="password"
-            required
             placeholder="********">
+            <p v-if="!$v.password.required">This field must not be empty</p>
+            <p v-if="!$v.password.minLen">You're password should have at least {{ $v.password.$params.minLen.min }} characters.</p>
         </div>
-        <div class="form-group">
+        <div class="form-group input" :class="{invalid: $v.confirmPassword.$error}">
           <label for="confirm-password">Confirm Password :</label>
           <input
            type="password"
            id="confirm-password"
            class="form-control"
-           v_model="confirmPassword"
-           required
+           v-model="confirmPassword"
+           @blur="$v.confirmPassword.$touch()"
            placeholder="********">
+           <p v-if="!$v.confirmPassword.required">This field must not be empty</p>
+           <p v-if="password !== confirmPassword">You're password should be the same.</p>
         </div>
         <!-- <div class="form-group">
           <label for="picture"></label>
@@ -50,7 +60,7 @@
           class="form-control-file">
         </div> -->
         <div class="form-group">
-          <input  class="btn btn-secondary" type="submit" name="" value="SEND">
+          <input  class="btn btn-secondary" type="submit" :disabled="$v.$invalid" value="SEND">
         </div>
       </fieldset>
     </form>
@@ -58,6 +68,10 @@
 </template>
 
 <script>
+/* eslint-disable */
+const urlApi = 'http://localhost:3000/users';
+import axios from 'axios';
+import { required, email, minValue, minLength, sameAs, requiredUnless } from 'vuelidate/lib/validators';
 export default {
   data() {
     return {
@@ -67,16 +81,62 @@ export default {
       confirmPassword: '',
     };
   },
+  validations: {
+    username: {
+      required,
+      minLen: minLength(6),
+      unique: val => {
+        if (val === '') return true
+        return axios.get('http://localhost:3000/users/usernames/' + val )
+        .then((res) => {
+          console.log(res.data);
+          // let fetchUsername = res.data;
+          return Object.keys(res.data).length === 0
+        });
+      }
+    },
+    email: {
+      /*required: required,
+      email: email
+      if key name = to value you can ommit value*/
+      required,
+      email,
+      unique: val => {
+        if (val === '') return true
+        return axios.get('http://localhost:3000/users/emails/' + val)
+          .then(res => {
+            return Object.keys(res.data).length === 0
+          })
+      }
+    },
+    password: {
+      required,
+      minLen: minLength(6)
+    },
+    confirmPassword: {
+      required,
+      sameAs: sameAs('password')
+      /*sameAs: sameAs(vm => {
+        return vm.password
+      })*/
+    },
+  },
   methods: {
     onSubmit() {
       const formData = {
         username: this.username,
-        email: this.email,
-        password: this.password,
+        email_user: this.email,
+        password_user: this.password,
         confirmPassword: this.confirmPassword,
       };
-      /* eslint-disable */ 
+      /* eslint-disable */
       console.log(formData);
+      // axios.post(urlApi, formData).then((user) => {
+      //   /* eslint-disable */
+      //   this.formData = user.data;
+      // });
+      // this.$router.push('account/');
+      this.$store.dispatch('register', formData)
     },
   },
 };
@@ -84,7 +144,7 @@ export default {
 
 <style lang="css" scoped="">
   .wrapper {
-    height: 93vh;
+    min-height: 93vh;
     background-image: url(../../assets/books.jpg);
     background-position: center;
     background-repeat: no-repeat;
@@ -109,5 +169,41 @@ export default {
   .btn-secondary {
     /*width: 5%;*/
 
+  }
+  .input label {
+    display: block;
+    color: #4e4e4e;
+    margin-bottom: 6px;
+  }
+
+  .input.inline label {
+    display: inline;
+  }
+
+  .input input {
+    font: inherit;
+    width: 100%;
+    padding: 6px 12px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+  }
+
+  .input.inline input {
+    width: auto;
+  }
+
+  .input input:focus {
+    outline: none;
+    border: 1px solid #521751;
+    background-color: #eee;
+  }
+
+  .input select {
+    border: 1px solid #ccc;
+    font: inherit;
+  }
+  .input.invalid input {
+    border: 1px solid red;
+    background-color: #ffc9aa;
   }
 </style>

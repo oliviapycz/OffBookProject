@@ -14,13 +14,22 @@ export default {
 
 <style lang="css" scoped="">
   .divBg {
-    color: white;
-    height: 93vh;
+    color: black;
+    height: 89vh;
     background-image: url(../../assets/library.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     opacity: 0.8;
     text-align: center;
+  }
+  h1 {
+    font-size: 36px;
+  }
+
+  @media (min-width: 640px) {
+    .divBg {
+      height: 93vh;
+    }
   }
 </style>

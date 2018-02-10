@@ -54,3 +54,10 @@ VALUES(
 INSERT INTO `user_books`(`id_book`, `id_user`) VALUES ('1', '1')
 
 SELECT * FROM `books`, `user_books` WHERE `user_id` =1 AND `id_book` = `book_id`
+
+//
+
+SELECT * FROM `books`
+INNER JOIN `list_books`
+WHERE list_books.list_id = 2
+AND list_books.book_id = books.id_book

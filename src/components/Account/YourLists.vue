@@ -2,7 +2,7 @@
   <div class="wrapper col-md-11">
     <div class="title row justify-content-between">
       <div class="">
-        <router-link to="account/yourlibrary/addlist"><button class="btn btn-outline-success btn-sm" type="button" name="button">+ Add a new list</button></router-link>
+        <router-link :to="{ name: 'AddList', params: {id_user} }"><button class="btn btn-outline-success btn-sm" type="button" name="button">{{ windowWidth > 640 ? addListDesktop : addListMobile }}</button></router-link>
       </div>
       <div class="">
         <h4>Your Lists</h4>
@@ -46,8 +46,12 @@
 
 <script>
 export default {
+  props: ['id_user'],
   data() {
     return {
+      windowWidth: window.innerWidth,
+      addListDesktop: '+ Add a new list',
+      addListMobile: '+',
       title: 'Best Books Ever',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     };

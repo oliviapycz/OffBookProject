@@ -7,18 +7,18 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <div class="row">
+        <div class="row" v-for="user in users">
           <div class="col-md-12">
-            <h6>Your address mail : {{ mail }}</h6>
+            <h6>Your address mail : {{ user.email_user }}</h6>
             </div>
             <div class="col-md-12">
-              <h6>Your username: {{ username }}</h6>
+              <h6>Your username: {{ user.username }}</h6>
           </div>
         </div>
 
         <div class="row">
           <div class="col-md-12">
-            <a href="#">Change my password</a>
+            <a href="#" @click="openModal">Change my password</a>
             </div>
             <div class="col-md-12">
               <a href="#">Delete my account</a>
@@ -41,13 +41,32 @@
 </template>
 
 <script>
+/* eslint-disable */
 export default {
+  props: ['id_user'],
   data() {
     return {
-      mail: 'bouquiquineuse@offbook.com',
-      username: 'bouquiquineuse',
+      users: [],
       picture: 'path/to/avatar.jpg',
     };
+  },
+  methods: {
+    fetchData() {
+      console.log('id_user',this.id_user);
+      const pathId = this.id_user;
+      this.axios.get('http://localhost:3000/user/' + pathId)
+        .then(response => {
+          console.log(response.data);
+          this.users = response.data;
+        });
+    },
+    openModal() {
+
+    }
+  },
+  mounted() {
+    // console.log('created');
+    this.fetchData();
   },
 };
 </script>
