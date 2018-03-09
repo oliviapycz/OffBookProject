@@ -144,7 +144,7 @@ export default {
 
 <style lang="css" scoped="">
   .wrapper {
-    min-height: 93vh;
+    min-height: 89vh;
     background-image: url(../../assets/books.jpg);
     background-position: center;
     background-repeat: no-repeat;
@@ -161,14 +161,8 @@ export default {
     text-align: center;
   }
   input {
-    /*width: 40%;*/
-    /*margin: auto;*/
-    border: inherit;
-    border-bottom: 1px solid lightgreen;
-  }
-  .btn-secondary {
-    /*width: 5%;*/
-
+    border: inherit !important;
+    border-bottom: 1px solid lightgreen !important;
   }
   .input label {
     display: block;
@@ -205,5 +199,12 @@ export default {
   .input.invalid input {
     border: 1px solid red;
     background-color: #ffc9aa;
+  }
+
+  /******DESKTOP******/
+  @media (min-width: 640px) {
+    .wrapper{
+      height: 89vh;
+    }
   }
 </style>

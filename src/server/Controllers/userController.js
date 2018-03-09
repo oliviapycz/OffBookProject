@@ -27,6 +27,13 @@ app.get('/users/usernames', (req, res) => {
     .catch(err => res.json(err))
 });
 
+app.get('/users/:id_user/username', (req, res) => {
+  const {id_user} = req.params;
+  model.getUsernameById(id_user)
+    .then(result => res.json(result))
+    .catch(err => res.json(err))
+});
+
 app.get('/users/usernames/:username', (req, res) => {
   const {username} = req.params;
   model.getUserByUsername(username)
@@ -52,11 +59,14 @@ app.post('/users', registerCredentialsMiddleware, (req, res) => {
   // model.addUser({username, email_user, password_user, picture_path_user})
   // .then(result => res.json(result))
   // .then(() => {
+  console.log('[REQ USER]',req.user[0]);
     res.json({
         token: "JWT " + generateToken(req.user),
+        testjwt: 'lolo',
         user: {
-          id: req.user.id_user,
-          username: req.user.username,
+          id: 'coucou',
+          id: req.user[0].id_user,
+          username: req.user[0].username,
         }
       })
   // })

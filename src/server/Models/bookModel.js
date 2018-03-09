@@ -99,7 +99,7 @@ module.exports = {
   //   )`, queryCallback)
   // },
 
-  addLists({name_list, description_list, books_arr, user_id}, callback) {
+  addLists({name_list, description_list, books_arr, user_id, username}, callback) {
     function queryCallback (err, result, fields){
       if (err) throw err;
       callback(result);
@@ -109,12 +109,14 @@ module.exports = {
         name_list,
         description_list,
         books_arr,
-        user_id
+        user_id,
+        username
     ) VALUES(
         '${name_list}',
         '${description_list}',
-        JSON_ARRAY(JSON_MERGE('${books_arr}')),
-        '${user_id}'
+        JSON_ARRAY('${books_arr}'),
+        '${user_id}',
+        '${username}'
     )`, queryCallback)
   },
 
@@ -127,6 +129,24 @@ module.exports = {
     return connection.query(`SELECT *
       FROM lists
       WHERE lists.user_id = '${id_user}'`, queryCallback)
+  },
+
+  getListByListId({id_list}, callback) {
+    function queryCallback (err, result, fields){
+      if (err) throw err;
+      callback(result);
+    }
+    return connection.query(`SELECT *
+      FROM lists
+      WHERE lists.id_list = '${id_list}'`, queryCallback)
+  },
+
+  getAllLists(callback) {
+    function queryCallback (err, result, fields){
+      if (err) throw err;
+      callback(result);
+    }
+    return connection.query(`SELECT * FROM lists`, queryCallback)
   },
 
   updateBooks({id_book, name_book, author_book, year_book, description_book, picture_path_book}, callback) {

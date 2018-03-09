@@ -6,6 +6,7 @@ import VueRouter from 'vue-router';
 import store from '../store'
 
 import Home from '@/components/Home';
+import AboutUs from '@/components/AboutUs';
 import LogIn from '@/components/Connexion/LogIn';
 import Register from '@/components/Connexion/Register';
 import ListOfBooks from '@/components/ListOfBooks';
@@ -13,6 +14,7 @@ import Account from '@/components//Account/Account';
 import YourLibrary from '@/components/Account/YourLibrary';
 import YourLists from '@/components/Account/YourLists';
 import YourWishList from '@/components/Account/YourWishList';
+import YourPersonalInformations from '@/components/Account/YourPersonalInformations';
 import AddBook from '@/components/Library/AddBook';
 import AddWishBook from '@/components/WishList/AddWishBook';
 import AddList from '@/components/Lists/AddList';
@@ -20,6 +22,7 @@ import DeleteBook from '@/components/Library/DeleteBook';
 import UpdateBook from '@/components/Library/UpdateBook';
 import UpdateWishBook from '@/components/WishList/UpdateWishBook';
 import UpdateList from '@/components/Lists/UpdateList';
+import ListDetails from '@/components/ListOfBooks/ListDetails';
 
 Vue.use(VueRouter);
 
@@ -28,6 +31,11 @@ export const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+  },
+  {
+    path: '/aboutus',
+    name: 'AboutUs',
+    component: AboutUs,
   },
   {
     path: '/login',
@@ -43,6 +51,11 @@ export const routes = [
     path: '/listofbooks',
     name: 'ListOfBooks',
     component: ListOfBooks,
+  },
+  {
+    path: '/listofbooks/list/:id_list',
+    name: 'ListDetails',
+    component: ListDetails,
   },
   {
     path: '/account/:id_user',
@@ -87,6 +100,19 @@ export const routes = [
     path: '/account/:id_user/wishlist',
     name: 'YourWishList',
     component: YourWishList,
+    props: true,
+    beforeEnter (to, from, next) {
+      if (store.state.token) {
+        next()
+      } else {
+        next('/login')
+      }
+    },
+  },
+  {
+    path: '/account/:id_user/personalinfo',
+    name: 'YourPersonalInformations',
+    component: YourPersonalInformations,
     props: true,
     beforeEnter (to, from, next) {
       if (store.state.token) {

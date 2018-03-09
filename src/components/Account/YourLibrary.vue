@@ -13,16 +13,18 @@
           Order By
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#" @click="added_last">Added Last</a>
-          <a class="dropdown-item" href="#" @click=" filter = rating">Rating</a>
-          <a class="dropdown-item" href="#" @click=" filter = 'year_book'">Year</a>
+          <a class="dropdown-item" href="#" @click=" added_last">Added Last</a>
+          <a class="dropdown-item" href="#" @click=" filter = year_book">Year</a>
           <a class="dropdown-item" href="#" @click=" filter = 'author_book' ">Author</a>
         </div>
       </div>
       </div>
     </div>
-
-    <div class="row">
+    <div v-if="!this.books.length" class="noData">
+      <p>Oops, no books in your library yet</p>
+      <p>Click on Add a new book below</p>
+    </div>
+    <div v-if="this.books.length" class="row">
       <div class="col-md-4 paddingMobile" v-for="book in orderBy(books, filter)">
         <div class="row col-md-12 box">
           <div class="col-md-12">
@@ -85,13 +87,19 @@ export default {
   },
   methods: {
     added_last () {
-      this.books.reverse();
-      console.log(this.books.reverse());
+      if (this.books.length > 1) {
+        this.books.reverse();
+        console.log(this.books.reverse());
+      }
+    },
+      year_book () {
+        if (this.books.length > 1) {
+          // this.books.
+        }
     },
     fetchData () {
       this.axios.get('http://localhost:3000/' + this.id_user + '/book')
         .then(response => {
-          console.log(response.data);
           this.books = response.data;
         });
     },
@@ -100,7 +108,6 @@ export default {
       console.log('select', this.selectBook);
       this.axios.delete('http://localhost:3000/book/' + id_book)
         .then(response => {
-          console.log(response.data);
           this.books = response.data;
         })
         .then(this.fetchData());
@@ -108,15 +115,10 @@ export default {
     },
     triggerModal (id_book) {
       this.openedModal = true;
-      console.log(id_book);
       this.axios.get('http://localhost:3000/book/' + id_book)
         .then(response => {
-          console.log('getBook', response.data);
           return this.selectBook = response.data;
-          // console.log('selectedBook', this.selectBook);
-          // console.log(this.$route.query.id_book);
         });
-      console.log('e', id_book);
     },
   },
   mounted() {
@@ -184,5 +186,14 @@ h4 {
     padding-left: 10px !important;
     padding-right: 10px !important;
   }
+}
+.noData {
+  margin-top: 5px;
+  height: 35vh;
+  background-color: rgba(211, 211, 211, 0.38);
+  color: grey;
+  font-size: 24px;
+  text-align: center;
+  padding-top: 7vh;
 }
 </style>

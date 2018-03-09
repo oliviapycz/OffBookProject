@@ -22,7 +22,11 @@
       </div>
     </div>
 
-    <div class="row">
+    <div v-if="!this.books.length" class="noData">
+      <p>Oops, no books in your wish list yet</p>
+      <p>Click on Add a new book below</p>
+    </div>
+    <div v-if="this.books.length" class="row">
       <div class="col-md-4 paddingMobile" v-for="book in orderBy(books, filter)">
         <div class="row col-md-12 box">
           <div class="col-md-12">
@@ -99,12 +103,10 @@ export default {
   methods: {
     added_last () {
       this.books.reverse();
-      console.log(this.books.reverse());
     },
     fetchData () {
       this.axios.get('http://localhost:3000/' + this.id_user + '/wishbook')
         .then(response => {
-          console.log(response.data);
           this.books = response.data;
         });
     },
@@ -113,7 +115,6 @@ export default {
       console.log('select', this.selectBook);
       this.axios.delete('http://localhost:3000/wishbook/' + id_book)
         .then(response => {
-          console.log(response.data);
           this.books = response.data;
         })
         .then(this.fetchData());
@@ -213,5 +214,14 @@ h4 {
     padding-left: 10px !important;
     padding-right: 10px !important;
   }
+}
+.noData {
+  margin-top: 5px;
+  height: 35vh;
+  background-color: rgba(211, 211, 211, 0.38);
+  color: grey;
+  font-size: 24px;
+  text-align: center;
+  padding-top: 7vh;
 }
 </style>

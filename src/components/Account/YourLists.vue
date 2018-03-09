@@ -22,25 +22,48 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-4 box">
-        <div class="row col-md-12">
+    <div v-if="!this.lists.length" class="noData">
+      <p>Oops, no list in your lists yet</p>
+      <p>Click on Add a new list below</p>
+    </div>
+    <div v-if="this.lists.length" class="row">
+      <div class="col-md-4 paddingMobile" v-for="list in lists">
+        <div class="row col-md-12 box">
           <div class="col-md-12">
-            <h6>{{ title }}</h6>
+            <h6>{{ list.name_list }}</h6>
           </div>
-          <div class="col-md-6 illustration"></div>
-          <p class="col-md-6">{{ description }}</p>
+          <div class="col-md-12 row">
+            <div class="col-md-12">
+              <li class="col-md-12" v-for="(l, index) in list.books_arr" :key="index">{{ l.author_book }} - {{ l.name_book }}</li>
+            </div>
+            <p class="col-md-12">{{ list.description_list }}</p>
+          </div>
           <div class="col-md-12" style="margin-top: 7px">
-            <button class=" btn btn-outline-success btn-sm" type="button" name="button">UPDATE</button>
-            <button class=" btn btn-outline-success btn-sm offset-md-3" type="button" name="button">DELETE</button>
+            <!-- <router-link :to="{ path: 'updatebook/' + book.id_book}" append><button class=" btn btn-outline-success btn-sm" type="button" name="button" >UPDATE</button></router-link> -->
+            <button type="button" name="button" class=" btn btn-outline-success btn-sm offset-md-3" @click="(() =>{triggerModal(list.id_list)})">DELETE</button>
           </div>
-
         </div>
       </div>
     </div>
-    <div class="footer row justify-content-center">
+    <!-- <div class="footer row justify-content-center">
       <router-link to="account/yourlibrary/addbook"><button class="btn btn-success btn-sm" type="button" name="button">SEE ALL</button></router-link>
-    </div>
+    </div> -->
+
+      <div class="row" v-if="openedModal">
+        <div class="col-md-8 col-md-offset-2 modale" v-for="list in selectList">
+          <p>Are you sure you want to delete this list?</p>
+          <div class="">
+            <div class="row col-md-12">
+              <div class="col-md-12">
+                <h6>{{ list.name_list }}</h6>
+                <p>{{ list.description_list  }}</p>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-outline-success btn-sm" type="button" @click="openedModal = false">CANCEL</button>
+          <button class="btn btn-outline-danger btn-sm" type="button" @click="(() =>{deleteList(list.id_list)})">CONFIRM</button>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -52,19 +75,82 @@ export default {
       windowWidth: window.innerWidth,
       addListDesktop: '+ Add a new list',
       addListMobile: '+',
-      title: 'Best Books Ever',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      lists: [],
+      selectList: [],
+      bookList: [],
+      listedBooks: [],
+      mapped: [],
+      newMapped: [],
+      delists: [],
+      openedModal: false,
     };
+  },
+  methods: {
+    fetchData () {
+      this.axios.get('http://localhost:3000/' + this.id_user + '/book')
+        .then(response => {
+          console.log(response.data);
+          this.booksList = response.data;
+        });
+    },
+    fetchDataList () {
+      this.axios.get('http://localhost:3000/' + this.id_user + '/lists')
+        .then(response => {
+          this.lists = response.data;
+          console.log('this.lists', JSON.stringify(this.lists));
+          let booksArr = [];
+          let newRes = [];
+          let map1 = [];
+          for (var list of this.lists) {
+            booksArr = list.books_arr.substring(2, list.books_arr.length-2);
+            var res = booksArr.split(",");
+            map1 = res.map(x => Number(x));
+            console.log('mappedHere', map1);
+            this.mapped = map1;
+            console.log('to do', list.books_arr);
+            this.newMapped = this.mapped.map(num => this.booksList.find((info) => info.id_book === num));
+            console.log('newMapped', JSON.stringify(this.newMapped));
+            list.books_arr = this.newMapped;
+            console.log('newList', JSON.stringify(this.lists));
+            };
+         })
+    },
+    deleteList(id_list) {
+      this.openedModal = false;
+      console.log('select', this.selecList);
+      this.axios.delete('http://localhost:3000/lists/' + id_list)
+        .then(response => {
+          console.log(response.data);
+          this.delists = response.data;
+        })
+        .then(this.fetchData());
+        // this.$router.go(-1);
+    },
+    triggerModal (id_list) {
+      this.openedModal = true;
+      console.log(id_list);
+      this.axios.get('http://localhost:3000/lists/' + id_list)
+        .then(response => {
+          console.log('getList', response.data);
+          return this.selectList = response.data;
+          // console.log('selectedBook', this.selectBook);
+          // console.log(this.$route.query.id_book);
+        });
+    },
+  },
+  mounted() {
+    this.fetchData();
+    this.fetchDataList();
   },
 };
 </script>
 
 <style lang="css" scoped="">
 .wrapper {
-  border: 2px solid lightgreen;
+  /*border: 2px solid lightgreen;*/
   margin: auto;
-  border-radius: 3px;
-  box-shadow: 2px 2px 5px lightgreen;
+  /*border-radius: 3px;*/
+  /*box-shadow: 2px 2px 5px lightgreen;*/
   padding: 5px;
 }
 .illustration {
@@ -77,10 +163,32 @@ export default {
   background-color: lightgreen;
 }
 .box{
-  padding: 2px;
-  border-right: 2px solid lightgreen;
+  padding: 5px 8px !important;
+  border: 2px solid lightgrey;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 0px lightgrey;
+  margin-bottom: 10px !important;
 }
 .title {
   border-bottom: 2px solid lightgreen;
+}
+.noData {
+  margin-top: 5px;
+  height: 35vh;
+  background-color: rgba(211, 211, 211, 0.38);
+  color: grey;
+  font-size: 24px;
+  text-align: center;
+  padding-top: 7vh;
+}
+.modale {
+  border: 2px solid lightgreen;
+  box-shadow: 5px 5px 5px grey;
+  background-color: white;
+  z-index: 500;
+  position: absolute;
+  left: 20%;
+  top: 45%;
+  margin: auto;
 }
 </style>

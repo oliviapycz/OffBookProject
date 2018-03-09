@@ -55,7 +55,7 @@
     <div class="row col-md-6">
       <draggable  class=" col-md-12 list-group" element="ul" v-model="books" :options="dragOptions" :move="onMove" @start="isDragging=true" @end="isDragging=false">
         <transition-group type="transition" :name="'flip-list'" class="d-flex flex-row flex-wrap">
-          <li class="list-group-item col-md-3 paddingMobile " v-for="book in books" :key="book.name_book">
+          <li class="list-group-item col-md-3 col-6 paddingMobile " v-for="book in books" :key="book.name_book">
             <!-- <i :class="book.fixed? 'fa fa-anchor' : 'glyphicon glyphicon-pushpin'" @click=" element.fixed=! element.fixed" aria-hidden="true"></i> -->
             <!-- {{element.name}}
             <span class="badge">{{element.order}}</span> -->
@@ -97,6 +97,7 @@ export default {
       picture_path_book: '',
       name_list: '',
       description_list: '',
+      username: '',
     };
   },
   methods: {
@@ -106,6 +107,14 @@ export default {
           console.log(response.data);
           this.books = response.data;
         });
+    },
+    getUsername() {
+      this.axios.get('http://localhost:3000/users/' + this.id_user + '/username')
+      .then((res) => {
+        this.username = res.data[0].username;
+        console.log('username', this.username);
+      })
+      // return this.username;
     },
     onSubmit() {
       let listIdBook = [];
@@ -117,9 +126,10 @@ export default {
       const formData = {
         name_list: this.name_list,
         description_list: this.description_list,
-        // books_arr: listIdBook,
-        books_arr: this.list,
+        books_arr: listIdBook,
+        // books_arr: this.list,
         user_id: this.id_user,
+        username: this.username,
       };
       console.log('formData',formData);
       const pathId = formData.user_id;
@@ -134,7 +144,7 @@ export default {
       // });
       /* eslint-disable */
       console.log(formData);
-      // this.$router.go(-1);
+      this.$router.go(-1);
     },
     // orderList () {
     //   this.list = this.list.sort((one,two) =>{return one.order-two.order; })
@@ -174,6 +184,7 @@ export default {
   },
   mounted() {
     this.fetchData();
+    this.getUsername();
 
   },
   updated() {

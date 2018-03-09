@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="wrapper-add row">
     <div class="col-md-6">
-        <h4 class="offset-md-5 col-md-4">Add a new Book</h4>
+        <h4 class="offset-md-4 col-md-5">Add a new Book</h4>
       <form class="col-md-12" @submit.prevent="onSubmit">
         <fieldset>
           <div class="form-group row marginTop15">
@@ -11,8 +11,11 @@
               id="name_book"
               class="form-control col-md-10"
               v-model="name_book"
+              :maxlength = "maxNameBook"
+              :disabled="maxNameBook == 0"
               required
               placeholder="ex: au bonheur des dames">
+              <p class="offset-md-2" v-if="maxNameBook- name_book.length == 0">Maximum 50 characters</p>
           </div>
           <div class="form-group row marginTop15">
             <label class="col-md-2" for="author_book">Author :</label>
@@ -21,8 +24,11 @@
               id="author_book"
               class="form-control col-md-10"
               v-model="author_book"
+              :maxlength = "maxAuthorBook"
+              :disabled="maxAuthorBook == 0"
               required
               placeholder="ex: emile zola">
+              <p class="offset-md-2" v-if="maxAuthorBook- author_book.length == 0">Maximum 50 characters</p>
           </div>
           <div class="form-group row marginTop15">
             <label class="col-md-2" for="year_book">Year :</label>
@@ -31,26 +37,31 @@
               id="year_book"
               class="form-control col-md-10"
               v-model="year_book"
+              max = "2018"
+              min = "0"
               required
               placeholder="ex: 1898">
+              <p class="offset-md-2" v-if="year_book > 2018">We're not here yet</p>
           </div>
           <div class="from-group row marginTop15">
-            <label class="col-md-2" for="description_book">Description :</label>
+            <label class="col-md-2" for="description_book">Description : <br>{{maxDescriptionBook - description_book.length}} char left</label>
             <textarea
               class="form-control col-md-10"
               id="description_book"
               v-model="description_book"
+              :maxlength="maxDescriptionBook"
+              :disabled="maxDescriptionBook == 0"
               rows="8" cols="80"
-              placeholder="ex: lorem ipsum"></textarea>
+              placeholder="maximum 350 characters"></textarea>
+              <p class="offset-md-2" v-if="max - description_book.length == 0">Maximum de characters atteint</p>
           </div>
           <div class="form-group row marginTop15">
-            <label class="col-md-2" for="picture_path_book">Picture :</label>
+            <label class="col-md-2" for="picture_path_book">Picture : </label>
             <input
               type="text"
               id="picture_path_book"
               class="form-control col-md-10"
               v-model="picture_path_book"
-              required
               placeholder="ex: /img.jpg">
           </div>
           <div class="form-group row marginTop15">
@@ -75,6 +86,10 @@ export default {
       year_book: '',
       description_book: '',
       picture_path_book: '',
+      maxDescriptionBook: 350,
+      maxNumberYear: 4,
+      maxNameBook: 50,
+      maxAuthorBook: 50,
     };
   },
   methods: {

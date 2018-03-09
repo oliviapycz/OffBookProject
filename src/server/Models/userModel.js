@@ -17,6 +17,10 @@ module.exports = {
     return db.connectQuery(`SELECT username from users`)
   },
 
+  getUsernameById(id_user) {
+    return db.connectQuery(`SELECT username from users WHERE id_user = '${id_user}'`)
+  },
+
   getUserByUsername(username) {
     return db.connectQuery(`SELECT * from users WHERE username = '${username}'`)
   },
@@ -31,7 +35,7 @@ module.exports = {
 
   addUser({username, email_user, password_user, picture_path_user}) {
       return encode(password_user).then(hashPwd => {
-        db.connectQuery(`INSERT INTO
+        return db.connectQuery(`INSERT INTO
         users(
           username,
           email_user,

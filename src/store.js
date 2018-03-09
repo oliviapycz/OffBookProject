@@ -47,7 +47,7 @@ export default new Vuex.Store({
         returnSecureToken: true
       })
         .then(res => {
-          console.log('register store', res)
+          console.log('register store', res.data.user)
           commit('authUser', {
             token: res.data.token,
             id_user: res.data.user.id,
@@ -58,9 +58,11 @@ export default new Vuex.Store({
           localStorage.setItem('token', res.data.token)
           localStorage.setItem('id_user', res.data.user.id)
           localStorage.setItem('username', res.data.user.username)
+          localStorage.setItem('userId', res.data.user.id)
           // localStorage.setItem('expirationDate', expirationDate)
           dispatch('storeUser', authData)
-          const id_user = this.state.id_user
+          const id_user = this.state.id_user;
+          console.log('[store.js => register] getId', this.state.id_user);
           router.replace('/account/' + id_user);
           // dispatch('setLogoutTimer', res.data.expiresIn)
         })
@@ -79,6 +81,7 @@ export default new Vuex.Store({
           localStorage.setItem('token', res.data.token)
           localStorage.setItem('id_user', res.data.user.id)
           localStorage.setItem('username', res.data.user.username)
+          localStorage.setItem('userId', res.data.user.id)
 
           // localStorage.setItem('expirationDate', expirationDate)
           commit('authUser', {
@@ -86,7 +89,7 @@ export default new Vuex.Store({
             id_user: res.data.user.id,
             username: res.data.user.username
           })
-          console.log('getId', this.state.id_user);
+          console.log('[store.js => login] getId', this.state.id_user);
           const id_user = this.state.id_user
           // $router.push('/account/' +  this.state.id_user)
           // dispatch('setLogoutTimer', res.data.expiresIn)
@@ -120,7 +123,8 @@ export default new Vuex.Store({
       localStorage.removeItem('token')
       localStorage.removeItem('id_user')
       localStorage.removeItem('username')
-      router.replace('/login')
+      localStorage.removeItem('userId')
+      router.replace('/')
     },
     storeUser ({commit, state}, userData) {
       if (!state.token) {

@@ -1,22 +1,6 @@
 <template lang="html">
   <div class="">
-    <!-- <ul class="nav">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">My Account</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Library</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Lists</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Wish List</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Personal Informations</a>
-      </li>
-  </ul> -->
+
   <div class="wrapper-account">
     <div class="title row justify-content-between align-items-end">
       <div class="col-xs-2">
@@ -29,8 +13,11 @@
         <p class="col-xs-5" style="margin-bottom: 0 !important">Last added</p>
 
     </div>
-
-    <div class="row">
+    <div v-if="!this.books.length" class="noData">
+      <p>Oops, no books in your library yet</p>
+      <p>Click on Add a new book above</p>
+    </div>
+    <div v-if="this.books.length" class="row">
       <div class="col-md-4 paddingMobile" v-for="book in books">
         <div class="row col-md-12 box">
           <div class="col-md-12">
@@ -47,7 +34,7 @@
         <a href="#"></a>
       </div>
     </div>
-    <div class="footer row justify-content-center align-items-end">
+    <div v-if="this.books.length > 2" class="footer row justify-content-center align-items-end">
       <router-link :to="{ name: 'YourLibrary', params: {id_user} }"><button class="btn btn-success btn-sm" type="button" name="button">SEE ALL</button></router-link>
     </div>
 
@@ -80,17 +67,23 @@
         <p class="col-xs-5" style="margin-bottom: 0 !important">Last added</p>
 
     </div>
-
-    <div class="row">
+    <div v-if="!this.lists.length" class="noData">
+      <p>Oops, no list in your library yet</p>
+      <p>Click on Add a new list above</p>
+    </div>
+    <div  v-if="this.lists.length" class="row">
       <div class="col-md-4 paddingMobile" v-for="list in lists">
         <div class="row col-md-12 box">
           <div class="col-md-12">
             <h6>{{ list.name_list }}</h6>
           </div>
-          <div class="col-md-6 ">
-            <li>{{list.books_arr}}</li>
+          <div class="col-md-12 row">
+            <div class="col-md-12">
+              <li class="col-md-12" v-for="(l, index) in list.books_arr" :key="index">{{ l.author_book }} - {{ l.name_book }}</li>
+            </div>
+            <p class="col-md-12">{{ list.description_list }}</p>
           </div>
-          <p class="col-md-6">{{ list.description_list }}</p>
+
           <!-- <div class="col-md-12" style="margin-top: 7px">
             <router-link :to="{ path:  id_user + '/yourlibrary/updatebook/' + book.id_book}" ><button class=" btn btn-outline-success btn-sm" type="button" name="button" >UPDATE</button></router-link>
             <button type="button" name="button" class=" btn btn-outline-success btn-sm offset-md-3" @click="(() =>{triggerModal(book.id_book)})">DELETE</button>
@@ -99,8 +92,8 @@
         <a href="#"></a>
       </div>
     </div>
-    <div class="footer row justify-content-center align-items-end">
-      <router-link :to="{ name: 'YourLibrary', params: {id_user} }"><button class="btn btn-success btn-sm" type="button" name="button">SEE ALL</button></router-link>
+    <div v-if="this.lists.length > 2" class="footer row justify-content-center align-items-end">
+      <router-link :to="{ name: 'YourLists', params: {id_user} }"><button class="btn btn-success btn-sm" type="button" name="button">SEE ALL</button></router-link>
     </div>
 
       <!-- <div class="row" v-if="openedModal">
@@ -132,8 +125,11 @@
           <p class="col-xs-5" style="margin-bottom: 0 !important">Last added</p>
 
       </div>
-
-      <div class="row">
+      <div v-if="!this.wishBooks.length" class="noData">
+        <p>Oops, no books in your wish list yet</p>
+        <p>Click on Add a new book above</p>
+      </div>
+      <div v-if="this.wishBooks.length" class="row">
         <div class="col-md-4 paddingMobile" v-for="book in wishBooks">
           <div class="row col-md-12 box">
             <div class="col-md-12">
@@ -151,12 +147,12 @@
           <a href="#"></a>
         </div>
       </div>
-      <div class="footer row justify-content-center align-items-end">
-        <router-link :to="{ name: 'YourLibrary', params: {id_user} }"><button class="btn btn-success btn-sm" type="button" name="button">SEE ALL</button></router-link>
+      <div v-if="this.wishBooks.length > 2" class="footer row justify-content-center align-items-end" style="margin-bottom:15px !important">
+        <router-link :to="{ name: 'YourWishList', params: {id_user} }"><button class="btn btn-success btn-sm" type="button" name="button">SEE ALL</button></router-link>
       </div>
 
         <div class="row" v-if="openedModal">
-          <div class="col-md-8 col-md-offset-2 modale" v-for="book in selectBook">
+          <div class="col-md-8 col-md-offset-2 modale" v-for="book in wishBook">
             <p>Are you sure you want to delete this book?</p>
             <div class="">
               <div class="row col-md-12">
@@ -171,7 +167,6 @@
           </div>
         </div>
     </div>
-    <app-yourpersonalinformations :id_user="id_user"></app-yourpersonalinformations><br>
   </div>
 </template>
 
@@ -200,68 +195,61 @@ export default {
       books: [],
       booksList: [],
       lists: [],
+      lastList: [],
       moveBooks: [],
       wishBooks: [],
       selectBook: [],
       openedModal: false,
       id_book: '',
-      b: [],
       listedBooks: [],
+      mapped: [],
+      newMapped: [],
     };
   },
   methods: {
     fetchData () {
       this.axios.get('http://localhost:3000/' + this.id_user + '/book')
         .then(response => {
-          console.log(response.data);
-          console.log(response.data.length);
+          this.booksList = response.data;
           this.books = response.data.slice(-3).reverse();
         });
     },
     fetchDataWish () {
       this.axios.get('http://localhost:3000/' + this.id_user + '/wishbook')
         .then(response => {
-          console.log(response.data);
-          console.log(response.data.length);
           this.wishBooks = response.data.slice(-3).reverse();
         });
     },
     fetchDataList () {
       this.axios.get('http://localhost:3000/' + this.id_user + '/lists')
         .then(response => {
-          this.lists = response.data;
-          console.log('this.lists', this.lists);
-          var a = [];
+          this.lists = response.data.slice(-3).reverse();
+          let booksArr = [];
+          let newRes = [];
+          let map1 = [];
           for (var list of this.lists) {
-            console.log('list.list to string', list.books_arr.substring(2, list.books_arr.length-2));
-            this.b = list.books_arr.substring(2, list.books_arr.length-2);
-            this.b.split(',').map(item => {
-              return parseInt(item)
-            });
-            a.push(this.b);
-            console.log('b',this.b);
-            console.log('a',this.a);
-            }
+            booksArr = list.books_arr.substring(2, list.books_arr.length-2);
+            var res = booksArr.split(",");
+            map1 = res.map(x => Number(x));
+            this.mapped = map1;
+            this.newMapped = this.mapped.map(num => this.booksList.find((info) => info.id_book === num));
+            list.books_arr = this.newMapped;
+            };
          })
-         .then(()=> {
-           this.axios.get('http://localhost:3000/' + this.id_user + '/book')
-             .then(response => {
-               console.log(response.data);
-               console.log(response.data.length);
-               this.booksList = response.data;
-           console.log('this.books', this.booksList);
-           this.listedBooks = this.booksList.find((info) => info.id_book === this.b[0]);
-           console.log('this.listedBooks ', JSON.stringify(this.listedBooks) );
-         });
-        });
-
     },
     deleteBook (id_book) {
       this.openedModal = false;
-      console.log('select', this.selectBook);
       this.axios.delete('http://localhost:3000/book/' + id_book)
         .then(response => {
-          console.log(response.data);
+          this.books = response.data;
+        })
+        .then(this.fetchData());
+        // this.$router.go(-1);
+    },
+    deleteWishBook (id_book) {
+      this.openedModal = false;
+      this.axios.delete('http://localhost:3000/book/' + id_book)
+        .then(response => {
           this.books = response.data;
         })
         .then(this.fetchData());
@@ -269,30 +257,22 @@ export default {
     },
     triggerModal (id_book) {
       this.openedModal = true;
-      console.log(id_book);
       this.axios.get('http://localhost:3000/book/' + id_book)
         .then(response => {
-          console.log('getBook', response.data);
           return this.selectBook = response.data;
-          // console.log('selectedBook', this.selectBook);
-          // console.log(this.$route.query.id_book);
         });
-      console.log('e', id_book);
     },
     addToLibrary (id_book) {
       const pathId = this.id_user;
       const urlApi = '/book';
       this.axios.get('http://localhost:3000/wishbook/' + id_book)
         .then(response => {
-          console.log('[get]', response.data);
           this.moveBooks = response.data;
         }).then(() => {
           this.axios.post('http://localhost:3000/' + pathId + urlApi, this.moveBooks[0])
-          console.log('http://localhost:3000/' + pathId + urlApi);
         }).then(() => {
           this.axios.delete('http://localhost:3000/wishbook/' + id_book)
         }).then(() => {
-          console.log('/account/' + this.id_user);
           this.$router.replace('/account/' + this.id_user)
         });
     }
@@ -303,35 +283,22 @@ export default {
     this.fetchDataList();
   },
   created() {
-    console.log(window.innerWidth);
     console.log('[account]', this.id_user);
-    this.$emit('setIdUser', this.id_user)
+    this.$emit('setIdUser', this.id_user);
   }
-  // methods: {
-  //   fetchData () {
-  //     this.axios.get('http://localhost:3000/user_books/' + this.routeId)
-  //       .then(response => {
-  //         this.infos = response.data
-  //         this.infos = [this.infos.find((info) => info.user_id === this.routeId)]
-  //       })
-  //   }
-  // }
 };
 </script>
 
 <style lang="css" scoped="">
 .wrapper-account {
   margin-top: 10px !important;
-  /*border: 2px solid lightgreen;*/
-  margin: auto;
-  /*border-radius: 3px;
-  box-shadow: 2px 2px 5px lightgreen;*/
   padding: 5px;
-  width: 90%;
 }
 .addBtn {
-  height: 40px !important;
-  font-size: 16px;
+  height: 30px !important;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 13px;
 }
 .illustration {
   background-image: url(../../assets/library.jpg);
@@ -365,9 +332,36 @@ export default {
   background-color: lightgreen;
 }
 h4 {
-  font-size: 24px;
-  /*line-height: 30px !important;*/
-  /*margin-bottom: 0 !important;*/
   color: green;
+  line-height: 10px;
+
+}
+a:hover {
+  text-decoration: none !important;
+}
+.noData {
+  margin-top: 5px;
+  height: 35vh;
+  background-color: rgba(211, 211, 211, 0.38);
+  color: grey;
+  font-size: 24px;
+  text-align: center;
+  padding-top: 7vh;
+}
+
+/******DESKTOP******/
+@media (min-width: 640px) {
+  .wrapper-account {
+    margin-top: 10px !important;
+    margin: auto;
+    padding: 5px;
+    width: 90%;
+  }
+  .addBtn {
+    height: inherit !important;
+    line-height: inherit;
+    font-weight: inherit;
+    font-size: 18px;
+  }
 }
 </style>

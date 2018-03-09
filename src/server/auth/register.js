@@ -36,15 +36,18 @@ const user = require('../Models/userModel');
 exports.registerCredentialsMiddleware = (req, res, next) => {
 
   const {username, email_user, password_user, picture_path_user} = req.body;
-  console.log(req.body);
+  // console.log(req.body);
   user.addUser({username, email_user, password_user, picture_path_user})
-  .then(user => {
-    console.log(res.json(user));
-    return res.json(user) = user;
+  .then(() => {
+    console.log('USER',user);
+    // return res.json(user) = user;
+    return user
+    .getUserByUsername(username)
   })
   .then(user => {
-    console.log(res.user);
-    res.user = user
+
+    req.user = user
+    next()
   })
     // .then(user => {
     //   req.user = user;

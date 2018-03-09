@@ -59,37 +59,13 @@ export default {
     },
   },
   methods: {
-    // onSubmit() {
-    //   const formData = {
-    //     username: this.username,
-    //     password: this.password,
-    //   };
-    //   console.log(formData);
-    //   this.axios.get('http://localhost:3000/username/' + this.username)
-    //     .then((res) => {
-    //       console.log('data', res.data);
-    //       const fetchData = res.data;
-    //       if (fetchData.length === 0 ||
-    //         (fetchData.length === 0 && fetchData[0].password_user !== this.password)) {
-    //         this.matchUsername = false;
-    //         return console.log('this username was not found in our database');
-    //       } else if (fetchData[0].password_user !== this.password) {
-    //         this.matchPassword = false;
-    //         return console.log('wrong password');
-    //       } else {
-    //           localStorage.setItem('username', this.username);
-    //           localStorage.setItem('id_user', fetchData[0].id_user);
-    //           this.$router.push('account/' + fetchData[0].id_user);
-    //           console.log('account/' + fetchData[0].id_user);
-    //       }
-    //     });
-    // },
     onSubmit() {
       const formData = {
         username: this.username,
         password: this.password,
       }
       console.log(formData);
+
       this.$store.dispatch('login', {username: formData.username, password: formData.password})
 
 
@@ -141,29 +117,32 @@ export default {
 </script>
 
 <style lang="css" scoped="">
-  .wrapper-login {
-    height: 93vh;
-    background-image: url(../../assets/books.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  form {
-    background-color: white;
-    margin: auto;
-    border: 1px solid lightgrey;
-    border-radius: 6px;
-    box-shadow: 2px 2px 5px lightgrey;
-  }
-  legend {
-    text-align: center;
-  }
-  input {
-    border: inherit;
-    border-bottom: 1px solid lightgreen;
-  }
-  .btn-secondary {
-    /*width: 5%;*/
+.wrapper-login {
+  height: 89vh;
+  background-image: url(../../assets/books.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+form {
+  background-color: white;
+  margin: auto;
+  border: 1px solid lightgrey;
+  border-radius: 6px;
+  box-shadow: 2px 2px 5px lightgrey;
+}
+legend {
+  text-align: center;
+}
+input {
+  border: inherit;
+  border-bottom: 1px solid lightgreen;
+}
 
+/******DESKTOP******/
+@media (min-width: 640px) {
+  .wrapper-login {
+    height: 90vh;
   }
+}
 </style>

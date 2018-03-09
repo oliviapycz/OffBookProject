@@ -14,7 +14,22 @@ app.get('/wishbook', function(req, res){
   function callback (result) {
     res.json(result);
   }
-  model.getWIshBooks(callback);
+  model.getWishBooks(callback);
+});
+
+app.get('/lists', function(req, res){
+  function callback (result) {
+    res.json(result);
+  }
+  model.getAllLists(callback);
+});
+
+app.get('/lists/:id_list', function(req, res){
+  const {id_list} = req.params;
+  function callback (result) {
+    res.json(result);
+  }
+  model.getListByListId({id_list}, callback);
 });
 
 app.get('/book/:id_book', function(req, res){
@@ -55,13 +70,13 @@ app.post('/:id_user/wishbook', function(req, res){
 
 app.post('/:id_user/lists', function(req, res){
   const {id_user} = req.params;
-  const {name_list, description_list, books_arr, user_id} = req.body;
+  const {name_list, description_list, books_arr, user_id, username} = req.body;
   console.log('books_arr', books_arr);
   console.log('value' + JSON.stringify(req.body));
   function callback (result) {
     res.json(result);
   }
-model.addLists({name_list, description_list, books_arr, user_id}, callback);
+model.addLists({name_list, description_list, books_arr, user_id, username}, callback);
 });
 
 app.put('/book/:id_book', function(req, res){
