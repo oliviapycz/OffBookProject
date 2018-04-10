@@ -39,7 +39,7 @@
     </div>
 
       <div class="row" v-if="openedModal">
-        <div class="col-md-8 col-md-offset-2 modale" v-for="book in selectBook">
+        <div class="col-md-4 col-md-offset-3 modale" v-for="book in selectBook">
           <p>Are you sure you want to delete this book?</p>
           <div class="">
             <div class="row col-md-12">

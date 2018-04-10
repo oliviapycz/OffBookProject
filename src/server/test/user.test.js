@@ -13,5 +13,5 @@ test('getUsers', () => {
 // });
 
 test('getUsersByEmail return a user object with properties', ()=> {
-  user.getUsersByEmail(user => expect(user.username).toBeDefined())
+  user.getUserByEmail(user => expect(user.username).toBeDefined())
 });
