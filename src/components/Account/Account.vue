@@ -79,7 +79,7 @@
           </div>
           <div class="col-md-12 row">
             <div class="col-md-12">
-              <li class="col-md-12" v-for="(l, index) in list.books_arr" :key="index">{{ l.author_book }} - {{ l.name_book }}</li>
+              <li class="col-md-12" v-for="(l, index) in list.books" :key="index">{{ l.author_book }} - {{ l.name_book }}</li>
             </div>
             <p class="col-md-12">{{ list.description_list }}</p>
           </div>
@@ -202,8 +202,6 @@ export default {
       openedModal: false,
       id_book: '',
       listedBooks: [],
-      mapped: [],
-      newMapped: [],
     };
   },
   methods: {
@@ -224,17 +222,6 @@ export default {
       this.axios.get('http://localhost:3000/' + this.id_user + '/lists')
         .then(response => {
           this.lists = response.data.slice(-3).reverse();
-          let booksArr = [];
-          let newRes = [];
-          let map1 = [];
-          for (var list of this.lists) {
-            booksArr = list.books_arr.substring(2, list.books_arr.length-2);
-            var res = booksArr.split(",");
-            map1 = res.map(x => Number(x));
-            this.mapped = map1;
-            this.newMapped = this.mapped.map(num => this.booksList.find((info) => info.id_book === num));
-            list.books_arr = this.newMapped;
-            };
          })
     },
     deleteBook (id_book) {

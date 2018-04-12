@@ -140,10 +140,7 @@ export default {
         .then((response) => {
         /* eslint-disable */
           // console.log('this.routeId', this.routeId);
-          console.log('get response.data', response.data);
           this.books = response.data;
-          console.log('this books ' + JSON.stringify(this.books));
-          console.log(this.books[0].author_book);
           // this.books = [response.data.find((book) => book.id_book == this.routeId)];
         });
     },
@@ -156,7 +153,6 @@ export default {
         description_book: this.description_book.length === 0 ? this.books[0].description_book : this.description_book,
         picture_path_book: this.picture_path_book.length === 0 ? this.books[0].picture_path_book : this.picture_path_book
       };
-      console.log('updatedFormData', updatedFormData);
       this.axios.put(bookApi, updatedFormData).then((updatedBooks) => {
         /* eslint-disable */
         this.updatedFormData = updatedBooks.data;

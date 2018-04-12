@@ -1,4 +1,4 @@
-const db= require('./db.js')
+const db = require('./db.js')
 const { encode } = require('../auth/pwd.js')
 
 

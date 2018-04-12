@@ -31,7 +31,7 @@
 
           <ul class="nav nav-pills hamLog col-12" v-if="auth" >
             <li class="nav-item">
-              <router-link class="nav-link" active-class="active" exact :to="{ name: 'Account', params: {id_user} }">Account</router-link>
+              <router-link class="nav-link" active-class="active" exact :to="{ name: 'Account', params: getUserId }">Account</router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link" active-class="active" :to="{ name: 'YourLibrary', params: {id_user} }">Library</router-link>
@@ -62,15 +62,24 @@
 <script>
 /* eslint-disable */
 export default {
-  props: ['id_user'],
+  // props: ['id_user'],
   data() {
     return {
-      // id_user: 0
+      id_user: '',
     };
   },
   computed: {
     auth () {
+      console.log('this.$store.getters.isAuthenticated',this.$store.getters.isAuthenticated);
       return this.$store.getters.isAuthenticated
+    },
+    getUserId () {
+      console.log(this.auth);
+      if (this.auth) {
+        return this.id_user = this.$route.params.id_user
+      } else {
+        return this.id_user = ''
+      }
     },
     username () {
       if (localStorage.getItem('username') !== null || undefined) {
@@ -84,9 +93,9 @@ export default {
       this.id_user = '';
     }
   },
-  mounted() {
-    this.id_user = this.$route.params.id_user
-    console.log('[NAVBAR]', this.id_user);
+  updated() {
+    // this.id_user = this.$route.params.id_user
+    // console.log('[NAVBAR]', this.id_user);
   }
 };
 </script>

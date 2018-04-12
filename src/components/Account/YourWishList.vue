@@ -112,7 +112,6 @@ export default {
     },
     deleteBook (id_book) {
       this.openedModal = false;
-      console.log('select', this.selectBook);
       this.axios.delete('http://localhost:3000/wishbook/' + id_book)
         .then(response => {
           this.books = response.data;
@@ -122,27 +121,19 @@ export default {
     },
     triggerModal (id_book) {
       this.openedModal = true;
-      console.log(id_book);
       this.axios.get('http://localhost:3000/wishbook/' + id_book)
         .then(response => {
-          console.log('getBook', response.data);
           return this.selectBook = response.data;
-          // console.log('selectedBook', this.selectBook);
-          // console.log(this.$route.query.id_book);
         });
-      console.log('e', id_book);
     },
     addToLibrary (id_book) {
       const pathId = this.id_user;
       const urlApi = '/book';
       this.axios.get('http://localhost:3000/wishbook/' + id_book)
         .then(response => {
-          console.log('[get]', response.data);
           this.books = response.data;
         }).then(() => {
           this.axios.post('http://localhost:3000/' + pathId + urlApi, this.books[0])
-          console.log('http://localhost:3000/' + pathId + urlApi);
-          console.log('[in the post]', this.books[0]);
         }).then(() => {
           this.axios.delete('http://localhost:3000/wishbook/' + id_book);
           this.$router.go(-1);
