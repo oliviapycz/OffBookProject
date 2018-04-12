@@ -34,7 +34,7 @@
           </div>
           <div class="col-md-12 row">
             <div class="col-md-12">
-              <li class="col-md-12" v-for="(l, index) in list.books_arr" :key="index">{{ l.author_book }} - {{ l.name_book }}</li>
+              <li class="col-md-12" v-for="(l, index) in list.books" :key="index">{{ l.author_book }} - {{ l.name_book }}</li>
             </div>
             <p class="col-md-12">{{ list.description_list }}</p>
           </div>
@@ -79,8 +79,6 @@ export default {
       selectList: [],
       bookList: [],
       listedBooks: [],
-      mapped: [],
-      newMapped: [],
       delists: [],
       openedModal: false,
     };
@@ -89,7 +87,6 @@ export default {
     fetchData () {
       this.axios.get('http://localhost:3000/' + this.id_user + '/book')
         .then(response => {
-          console.log(response.data);
           this.booksList = response.data;
         });
     },
@@ -97,30 +94,12 @@ export default {
       this.axios.get('http://localhost:3000/' + this.id_user + '/lists')
         .then(response => {
           this.lists = response.data;
-          console.log('this.lists', JSON.stringify(this.lists));
-          let booksArr = [];
-          let newRes = [];
-          let map1 = [];
-          for (var list of this.lists) {
-            booksArr = list.books_arr.substring(2, list.books_arr.length-2);
-            var res = booksArr.split(",");
-            map1 = res.map(x => Number(x));
-            console.log('mappedHere', map1);
-            this.mapped = map1;
-            console.log('to do', list.books_arr);
-            this.newMapped = this.mapped.map(num => this.booksList.find((info) => info.id_book === num));
-            console.log('newMapped', JSON.stringify(this.newMapped));
-            list.books_arr = this.newMapped;
-            console.log('newList', JSON.stringify(this.lists));
-            };
          })
     },
     deleteList(id_list) {
       this.openedModal = false;
-      console.log('select', this.selecList);
       this.axios.delete('http://localhost:3000/lists/' + id_list)
         .then(response => {
-          console.log(response.data);
           this.delists = response.data;
         })
         .then(this.fetchData());
@@ -128,13 +107,9 @@ export default {
     },
     triggerModal (id_list) {
       this.openedModal = true;
-      console.log(id_list);
       this.axios.get('http://localhost:3000/lists/' + id_list)
         .then(response => {
-          console.log('getList', response.data);
           return this.selectList = response.data;
-          // console.log('selectedBook', this.selectBook);
-          // console.log(this.$route.query.id_book);
         });
     },
   },

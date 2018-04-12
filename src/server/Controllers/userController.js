@@ -12,7 +12,7 @@ app.get('/users', (req, res) => {
   model.getUsers()
     .then(result => res.json(result))
     .catch(err => res.json(err))
-})
+});
 
 app.get('/user/:id_user', (req, res) => {
   const {id_user} = req.params;
@@ -90,64 +90,4 @@ app.post('/login', checkCredentialsMiddleware, (req, res) => {
 });
 
 
-// .post("/login", checkCredentialsMiddleware, (req, res) => {
-//     // ici on appelle checkCredentials
-//     // checkCredentials(req.body.email, req.body.password)
-//     // .then( () => res.send('LOGIN REUSSI'))
-//     // .catch( err => res.send(err))
-//
-//     // Grâce au middleware checkCredentialsMiddleware, on récupere le user
-//     res
-//       .status(200)
-//       .json({
-//         token: "JWT " + generateToken(req.user),
-//         user: {
-//           id: req.user.id,
-//           username: req.user.username,
-//         }
-//       });
-// });
-
-// app.get('/email/:email_user', function(req, res){
-//   const {email_user} = req.params;
-//   function callback (result) {
-//     res.json(result);
-//   }
-//   model.getUsersByEmail({email_user}, callback);
-// });
-//
-// app.get('/email', function(req, res){
-//   function callback (result) {
-//     res.json(result);
-//   }
-//   model.getEmail( callback);
-// });
-
-
-//
-// app.get("/user",function(req,res){
-// connection.query('SELECT * from user LIMIT 2', function(err, rows, fields) {
-// connection.end();
-//   if (!err)
-//     console.log('The solution is: ', rows);
-//   else
-//     console.log('Error while performing Query.');
-//   });
-// });
-
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
-// app.get('/user', (req, res) => {
-//   connection.connect(function(err) {
-//     connection.query("SELECT * FROM users", function (err, result, fields) {
-//       if (err) throw err;
-//       console.log(result);
-//     });
-//   });
-// })
-
-// app.get('/', (req, res) => {
-//   res.send('Hello to Me and to the reload and nodemon')
-// })
 module.exports = app;

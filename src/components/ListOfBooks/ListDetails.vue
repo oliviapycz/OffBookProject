@@ -1,22 +1,21 @@
 <template lang="html">
   <div class="wrapper-list-details col-md-11">
-    <div class="row" v-for=" li in list">
+    <div class="row" v-for=" list in lists">
       <div class="row col-md-6 col-12">
         <div class="title col-12">
-          <h4>{{ li.name_list }}</h4>
+          <h4>{{ list.name_list }}</h4>
         </div>
-        <h5 class="col-12"> <i>list proposed by</i> {{ li.username }}</h5>
+        <h5 class="col-12"> <i>list proposed by</i> {{ list.username }}</h5>
       </div>
-      <p class="col-md-6" style="background-color: lightgreen; padding: 10px">{{ li.description_list }}</p>
-      <div v-for="li in newMapped" class="row box" style="margin-bottom: 5px !important">
+      <p class="col-md-6" style="background-color: lightgreen; padding: 10px">{{ list.description_list }}</p>
+      <div v-for="(l, index) in list.books" :key="index" class="row box" style="margin-bottom: 5px !important">
         <div class="col-md-2 illustration"></div>
         <div class="col-md-10 row">
-          <li class="col-md-8 offset-md-2" style="list-style-type: none; margin-bottom: 15px">{{ li.author_book }} - {{ li.name_book }} - {{ li.year_book }}</li>
-          <p class="col-md-8 offset-md-2"> {{ li.description_book }}</p>
+          <li class="col-md-8 offset-md-2" style="list-style-type: none; margin-bottom: 15px">{{ l.author_book }} - {{ l.name_book }} - {{ l.year_book }}</li>
+          <p class="col-md-8 offset-md-2"> {{ l.description_book }}</p>
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -24,46 +23,29 @@
 export default {
   data () {
     return {
-      books: [],
-      list: [],
-      mapped: [],
+      // books: [],
+      lists: [],
       id_list: this.$route.params.id_list,
-      newMapped: []
     };
   },
   methods: {
-    fetchBooks () {
-      this.axios.get('http://localhost:3000/book')
-        .then(response => {
-          console.log('books', response.data);
-          this.books = response.data;
-        });
-    },
+    // fetchBooks () {
+    //   this.axios.get('http://localhost:3000/book')
+    //     .then(response => {
+    //       console.log('books', response.data);
+    //       this.books = response.data;
+    //     });
+    // },
     fetchList () {
       this.axios.get('http://localhost:3000/lists/' + this.id_list)
         .then(response => {
-          console.log('list', response.data);
-          this.list = response.data;
-          let booksArr = [];
-          let newRes = [];
-          let map1 = [];
-          for (var li of this.list) {
-            booksArr = li.books_arr.substring(2, li.books_arr.length-2);
-            var res = booksArr.split(",");
-            map1 = res.map(x => Number(x));
-            console.log('mappedHere', map1);
-            this.mapped = map1;
-            console.log('to do', li.books_arr);
-            this.newMapped = this.mapped.map(num => this.books.find((info) => info.id_book === num));
-            console.log('newMapped', JSON.stringify(this.newMapped));
-            // li.books_arr = newMapped;
-
-            };
+          this.lists = response.data;
+          console.log('[===this.list===]', JSON.stringify(this.lists));
         });
     }
   },
   mounted() {
-    this.fetchBooks();
+    // this.fetchBooks();
     this.fetchList();
   }
 }

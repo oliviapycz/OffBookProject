@@ -89,12 +89,10 @@ export default {
     added_last () {
       if (this.books.length > 1) {
         this.books.reverse();
-        console.log(this.books.reverse());
       }
     },
       year_book () {
         if (this.books.length > 1) {
-          // this.books.
         }
     },
     fetchData () {
@@ -105,7 +103,6 @@ export default {
     },
     deleteBook (id_book) {
       this.openedModal = false;
-      console.log('select', this.selectBook);
       this.axios.delete('http://localhost:3000/book/' + id_book)
         .then(response => {
           this.books = response.data;

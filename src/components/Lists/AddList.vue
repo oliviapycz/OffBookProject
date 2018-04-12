@@ -98,13 +98,13 @@ export default {
       name_list: '',
       description_list: '',
       username: '',
+      id_list: '',
     };
   },
   methods: {
     fetchData () {
       this.axios.get('http://localhost:3000/' + this.id_user + '/book')
         .then(response => {
-          console.log(response.data);
           this.books = response.data;
         });
     },
@@ -112,7 +112,6 @@ export default {
       this.axios.get('http://localhost:3000/users/' + this.id_user + '/username')
       .then((res) => {
         this.username = res.data[0].username;
-        console.log('username', this.username);
       })
       // return this.username;
     },
@@ -121,29 +120,31 @@ export default {
       this.list.map( (book) => {
         listIdBook.push(book.id_book)
       });
-      console.log('listIdBook',listIdBook);
-      console.log('THIS LIST', this.list);
       const formData = {
         name_list: this.name_list,
         description_list: this.description_list,
-        books_arr: listIdBook,
+        // books_arr: listIdBook,
         // books_arr: this.list,
         user_id: this.id_user,
         username: this.username,
       };
-      console.log('formData',formData);
       const pathId = formData.user_id;
       const urlApi = '/lists';
       axios.post(pathId + urlApi, formData).then((list) => {
         /* eslint-disable */
-        this.formData = list.data;
-      });
-      // axios.post('http://localhost:3000/user_books' + this.id_user, formData).then((books) => {
-      //   /* eslint-disable */
-      //   this.formData = books.data;
-      // });
+        // this.formData = list.data;
+        this.id_list = list.data.insertId;
+      }).then(() =>{
+        for (var i = 0; i < listIdBook.length; i++) {
+          let formDataBooks = {
+            list_id: this.id_list,
+            book_id : listIdBook[i]
+          }
+          axios.post(pathId + '/list-books', formDataBooks);
+        }
+      })
       /* eslint-disable */
-      console.log(formData);
+
       this.$router.go(-1);
     },
     // orderList () {
@@ -164,12 +165,6 @@ export default {
         ghostClass: 'ghost'
       };
     },
-    // listString(){
-    //   return JSON.stringify(this.list, null, 2);
-    // },
-    // list2String(){
-    //   return JSON.stringify(this.list2, null, 2);
-    // }
   },
   watch: {
     isDragging (newValue) {

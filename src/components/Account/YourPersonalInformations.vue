@@ -120,7 +120,6 @@ export default {
       const pathId = this.id_user;
       this.axios.get('http://localhost:3000/user/' + pathId)
         .then(response => {
-          console.log(response.data);
           this.users = response.data;
         });
     },
