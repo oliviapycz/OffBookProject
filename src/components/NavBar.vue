@@ -31,7 +31,7 @@
 
           <ul class="nav nav-pills hamLog col-12" v-if="auth" >
             <li class="nav-item">
-              <router-link class="nav-link" active-class="active" exact :to="{ name: 'Account', params: getUserId }">Account</router-link>
+              <router-link class="nav-link" active-class="active" exact :to="{ name: 'Account', params: {id_user} }">Account</router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link" active-class="active" :to="{ name: 'YourLibrary', params: {id_user} }">Library</router-link>
@@ -74,28 +74,30 @@ export default {
       return this.$store.getters.isAuthenticated
     },
     getUserId () {
-      console.log(this.auth);
-      if (this.auth) {
+      console.log('this.auth', this.auth);
+      if (this.auth && this.id_user === '') {
         return this.id_user = this.$route.params.id_user
+      } else if (this.auth && this.user !== '') {
+        return this.id_user
       } else {
         return this.id_user = ''
       }
     },
-    username () {
-      if (localStorage.getItem('username') !== null || undefined) {
-        return localStorage.getItem('username')
-      }
-    },
+    // username () {
+    //   if (localStorage.getItem('username') !== null || undefined) {
+    //     return localStorage.getItem('username')
+    //   }
+    // },
   },
   methods: {
     onLogout() {
       this.$store.dispatch('logout');
       this.id_user = '';
+      // this.username = '';
     }
   },
-  updated() {
-    // this.id_user = this.$route.params.id_user
-    // console.log('[NAVBAR]', this.id_user);
+  beforeMount() {
+    console.log('[NAVBAR]', this.id_user);
   }
 };
 </script>

@@ -142,10 +142,10 @@ export default {
           }
           axios.post(pathId + '/list-books', formDataBooks);
         }
+      }).then(() => {
+        this.$router.go(-1);
       })
-      /* eslint-disable */
 
-      this.$router.go(-1);
     },
     // orderList () {
     //   this.list = this.list.sort((one,two) =>{return one.order-two.order; })
