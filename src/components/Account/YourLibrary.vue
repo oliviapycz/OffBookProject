@@ -31,7 +31,8 @@
             <h6>{{ book.name_book }}</h6>
             <h6>{{ book.author_book }} - {{ book.year_book }}</h6>
           </div>
-          <div class="col-md-6 illustration"></div>
+          <div class="col-md-6 illustration"
+              :style="manageCoverBook(book.picture_path_book)"></div>
           <p class="col-md-6">{{ book.description_book }}</p>
           <div class="col-md-12" style="margin-top: 7px">
             <router-link :to="{ path: 'updatebook/' + book.id_book}" append><button class=" btn btn-outline-success btn-sm" type="button" name="button" >UPDATE</button></router-link>
@@ -95,6 +96,15 @@ export default {
         if (this.books.length > 1) {
         }
     },
+    manageCoverBook (pic) {
+      const fakeCover = 'background-image: url(../../static/images//library.jpg)';
+      let cover = { 'background-image': 'url(../../../static/uploads/covers/' + pic + ')' }
+      if ( pic.length > 0) {
+         return cover
+      } else {
+        return fakeCover
+      }
+    },
     fetchData () {
       this.axios.get('http://localhost:3000/' + this.id_user + '/book')
         .then(response => {
@@ -135,7 +145,6 @@ export default {
   padding-right: 0px !important;
 }
 .illustration {
-  background-image: url(../../assets/library.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

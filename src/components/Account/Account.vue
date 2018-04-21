@@ -6,12 +6,8 @@
       <div class="col-xs-2">
         <router-link :to="{ name: 'AddBook', params: {id_user} }"><button class="btn btn-outline-success btn-sm addBtn" type="button" name="button">{{ windowWidth > 640 ? addBookDesktop : addBookMobile }}</button></router-link>
       </div>
-
         <router-link class="col-xs-5":to="{ name: 'YourLibrary', params: {id_user} }"><h4>Your Library</h4></router-link>
-
-
         <p class="col-xs-5" style="margin-bottom: 0 !important">Last added</p>
-
     </div>
     <div v-if="!this.books.length" class="noData">
       <p>Oops, no books in your library yet</p>
@@ -24,7 +20,9 @@
             <h6>{{ book.name_book }}</h6>
             <h6>{{ book.author_book }} - {{ book.year_book }}</h6>
           </div>
-          <div class="col-md-6 illustration"></div>
+          <div class="col-md-6 illustration"
+          :style="manageCoverBook(book.picture_path_book)">
+          </div>
           <p class="col-md-6">{{ book.description_book }}</p>
           <div class="col-md-12" style="margin-top: 7px">
             <router-link :to="{ path:  id_user + '/yourlibrary/updatebook/' + book.id_book}" ><button class=" btn btn-outline-success btn-sm" type="button" name="button" >UPDATE</button></router-link>
@@ -37,7 +35,6 @@
     <div v-if="this.books.length > 2" class="footer row justify-content-center align-items-end">
       <router-link :to="{ name: 'YourLibrary', params: {id_user} }"><button class="btn btn-success btn-sm" type="button" name="button">SEE ALL</button></router-link>
     </div>
-
       <div class="row" v-if="openedModal">
         <div class="col-md-4 col-md-offset-3 modale" v-for="book in selectBook">
           <p>Are you sure you want to delete this book?</p>
@@ -60,12 +57,8 @@
       <div class="col-xs-2">
         <router-link :to="{ name: 'AddList', params: {id_user} }"><button class="btn btn-outline-success btn-sm addBtn" type="button" name="button">{{ windowWidth > 640 ? addListDesktop : addListMobile }}</button></router-link>
       </div>
-
         <router-link class="col-xs-5":to="{ name: 'YourLists', params: {id_user} }"><h4>Your Lists</h4></router-link>
-
-
         <p class="col-xs-5" style="margin-bottom: 0 !important">Last added</p>
-
     </div>
     <div v-if="!this.lists.length" class="noData">
       <p>Oops, no list in your library yet</p>
@@ -83,7 +76,6 @@
             </div>
             <p class="col-md-12">{{ list.description_list }}</p>
           </div>
-
           <!-- <div class="col-md-12" style="margin-top: 7px">
             <router-link :to="{ path:  id_user + '/yourlibrary/updatebook/' + book.id_book}" ><button class=" btn btn-outline-success btn-sm" type="button" name="button" >UPDATE</button></router-link>
             <button type="button" name="button" class=" btn btn-outline-success btn-sm offset-md-3" @click="(() =>{triggerModal(book.id_book)})">DELETE</button>
@@ -95,7 +87,6 @@
     <div v-if="this.lists.length > 2" class="footer row justify-content-center align-items-end">
       <router-link :to="{ name: 'YourLists', params: {id_user} }"><button class="btn btn-success btn-sm" type="button" name="button">SEE ALL</button></router-link>
     </div>
-
       <!-- <div class="row" v-if="openedModal">
         <div class="col-md-8 col-md-offset-2 modale" v-for="book in selectBook">
           <p>Are you sure you want to delete this list?</p>
@@ -136,7 +127,9 @@
               <h6>{{ book.name_book }}</h6>
               <h6>{{ book.author_book }} - {{ book.year_book }}</h6>
             </div>
-            <div class="col-md-6 illustration"></div>
+            <div class="col-md-6 illustration"
+              :style="manageCoverBook(book.picture_path_book)">
+            </div>
             <p class="col-md-6">{{ book.description_book }}</p>
             <div class="col-md-12" style="margin-top: 7px">
               <router-link :to="{ path:  id_user + '/wishlist/updatewishbook/' + book.id_book}" ><button class=" btn btn-outline-success btn-sm" type="button" name="button" >UPDATE</button></router-link>
@@ -205,6 +198,15 @@ export default {
     };
   },
   methods: {
+    manageCoverBook (pic) {
+      const fakeCover = 'background-image: url(../../static/images/library.jpg)';
+      let cover = { 'background-image': 'url(../../../static/uploads/covers/' + pic + ')' }
+      if ( pic.length > 0) {
+         return cover
+      } else {
+        return fakeCover
+      }
+    },
     fetchData () {
       this.axios.get('http://localhost:3000/' + this.id_user + '/book')
         .then(response => {
@@ -288,7 +290,6 @@ export default {
   line-height: 13px;
 }
 .illustration {
-  background-image: url(../../assets/library.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

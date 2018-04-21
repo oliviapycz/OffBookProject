@@ -1,8 +1,11 @@
 const express = require('express')
 const cors = require('cors')
-const passport = require('passport');
-const flash = require('connect-flash');
-
+const passport = require('passport')
+const flash = require('connect-flash')
+const multer = require('multer')
+const bodyParser = require('body-parser')
+const morgan = require('morgan');
+const crypto = require('crypto')
 const pwd = require('./auth/pwd.js')
 // cors : permets de gérer avec qui le serveur va accepter
 
@@ -16,7 +19,9 @@ app.use(cors()); // enables ALL
 app.use(express.json()) //ce middleware express parse le json envoyé en POST
 // pour un formulaire classique le middleware est : express URLencoded
 //middleware transformateur de JSON qui se trouverait dans le body
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(morgan('dev'));
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Davido's code
@@ -37,6 +42,55 @@ app.use('', bookController);
 // middleware pour une route à laquelle j'attache un controller
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// const storage = multer.diskStorage({
+//   destination: './uploads',
+//   filename: function (req, file, callback) {
+//     //..
+//   }
+// });
+//
+// crypto.pseudoRandomBytes(16, function(err, raw) {
+//   if (err) return callback(err);
+//
+//   callback(null, raw.toString('hex') + path.extname(file.originalname));
+// });
+//
+// const upload = multer({ dest: __dirname + '/uploads' })
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    // cb(null, '/home/olivia/public_html/OffBookProject/src/uploads/covers')
+    cb(null, __dirname + '/../../static/uploads/covers')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
+})
+
+var upload = multer({ storage: storage })
+
+app.post('/uploads', upload.single('cover'), (req, res) => {
+  if (!req.file) {
+    console.log("No file received");
+    return res.send({
+      success: false
+    });
+
+  } else {
+    console.log('file received');
+    const filename = req.file.filename;
+    return res.send({
+      success: true,
+      filename
+    })
+  }
+});
+
+// app.use(express.static(__dirname, '/static'));
+
+
+
+
 
 // création du serveur et connexion au port 3000
 

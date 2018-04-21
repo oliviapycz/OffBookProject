@@ -53,22 +53,30 @@
               :disabled="maxDescriptionBook == 0"
               rows="8" cols="80"
               placeholder="maximum 350 characters"></textarea>
-              <p class="offset-md-2" v-if="max - description_book.length == 0">Maximum de characters atteint</p>
+              <p class="offset-md-2" v-if="maxDescriptionBook - description_book.length == 0">Maximum de characters atteint</p>
           </div>
           <div class="form-group row marginTop15">
             <label class="col-md-2" for="picture_path_book">Picture : </label>
-            <input
+            <!-- <input
               type="text"
               id="picture_path_book"
               class="form-control col-md-10"
               v-model="picture_path_book"
-              placeholder="ex: /img.jpg">
+              placeholder="ex: /img.jpg"> -->
+              <input type="file" @change="onFileChanged" accept="image/*">
           </div>
+          <!-- <div class="file-upload-form">
+              Upload an image file:
+
+          </div> -->
           <div class="form-group row marginTop15">
             <input  class="btn btn-secondary offset-md-5 col-md-4 " type="submit" name="" value="SEND">
           </div>
         </fieldset>
       </form>
+    </div>
+    <div class="col-md-4 offset-md-1 image-preview " v-if="imageData.length > 0">
+        <img class="preview" :src="imageData">
     </div>
   </div>
 </template>
@@ -90,31 +98,75 @@ export default {
       maxNumberYear: 4,
       maxNameBook: 50,
       maxAuthorBook: 50,
+      imageData: '',
+      selectedFile: null
     };
   },
   methods: {
+    onFileChanged (event) {
+        // Reference to the DOM input element
+        var input = event.target;
+        // Ensure that you have a file before attempting to read it
+        if (input.files && input.files[0]) {
+            // create a new FileReader to read this image and convert to base64 format
+            var reader = new FileReader();
+            // Define a callback function to run, when FileReader finishes its job
+            reader.onload = (e) => {
+                // Note: arrow function used here, so that "this.imageData" refers to the imageData of Vue component
+                // Read image as base64 and set to imageData
+                this.imageData = e.target.result;
+            }
+            // Start the reader job - read file as a data url (base64 format)
+            reader.readAsDataURL(input.files[0]);
+            this.selectedFile = event.target.files[0]
+            console.log('this.selectedFile', this.selectedFile);
+        }
+    },
     onSubmit() {
-      const formData = {
-        name_book: this.name_book,
-        author_book: this.author_book,
-        year_book: this.year_book,
-        description_book: this.description_book,
-        picture_path_book: this.picture_path_book,
-        user_id: this.id_user,
-      };
-      const pathId = formData.user_id;
-      const urlApi = '/book';
-      axios.post(pathId + urlApi, formData).then((books) => {
-        /* eslint-disable */
-        this.formData = books.data;
-      });
-      // axios.post('http://localhost:3000/user_books' + this.id_user, formData).then((books) => {
-      //   /* eslint-disable */
-      //   this.formData = books.data;
-      // });
-      /* eslint-disable */
-      console.log(formData);
-      this.$router.go(-1);
+      if (this.selectedFile === null) {
+        const formDatas = {
+          name_book: this.name_book,
+          author_book: this.author_book,
+          year_book: this.year_book,
+          description_book: this.description_book,
+          picture_path_book: this.picture_path_book,
+          user_id: this.id_user,
+        };
+        const pathId = formDatas.user_id;
+        const urlApi = '/book';
+        axios.post(pathId + urlApi, formDatas).then((books) => {
+          /* eslint-disable */
+          this.formDatas = books.data;
+        }).then(() => {
+          this.$router.go(-1);
+        })
+      } else {
+        const formData = new FormData()
+        formData.append('cover', this.selectedFile, this.selectedFile.name)
+        axios.post('/uploads', formData)
+          .then((cover) => {
+            this.picture_path_book = cover.data.filename
+          })
+          .then(() => {
+            const formDatas = {
+              name_book: this.name_book,
+              author_book: this.author_book,
+              year_book: this.year_book,
+              description_book: this.description_book,
+              picture_path_book: this.picture_path_book,
+              user_id: this.id_user,
+            };
+            const pathId = formDatas.user_id;
+            const urlApi = '/book';
+            axios.post(pathId + urlApi, formDatas).then((books) => {
+              /* eslint-disable */
+              this.formDatas = books.data;
+            });
+          }).then(() => {
+            this.$router.go(-1);
+          })
+      }
+
     },
   }
 };
@@ -123,7 +175,7 @@ export default {
 <style lang="css" scoped="">
 .wrapper-add {
   min-height: 93vh;
-  background-image: url(../../assets/books-half.jpg);
+  background-image: url(../../../static/images/books-half.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -138,5 +190,11 @@ label {
 }
 h4 {
   text-align: center;
+}
+
+img.preview {
+  margin-top: 30px;
+  height: 80%;
+  width: 80%;
 }
 </style>

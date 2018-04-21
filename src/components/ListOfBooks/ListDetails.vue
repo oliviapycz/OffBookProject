@@ -9,7 +9,9 @@
       </div>
       <p class="col-md-6" style="background-color: lightgreen; padding: 10px">{{ list.description_list }}</p>
       <div v-for="(l, index) in list.books" :key="index" class="row box" style="margin-bottom: 5px !important">
-        <div class="col-md-2 illustration"></div>
+        <div class="col-md-2 illustration"
+          :style="manageCoverBook(l.picture_path_book)">
+        </div>
         <div class="col-md-10 row">
           <li class="col-md-8 offset-md-2" style="list-style-type: none; margin-bottom: 15px">{{ l.author_book }} - {{ l.name_book }} - {{ l.year_book }}</li>
           <p class="col-md-8 offset-md-2"> {{ l.description_book }}</p>
@@ -29,6 +31,15 @@ export default {
     };
   },
   methods: {
+    manageCoverBook (pic) {
+      const fakeCover = 'background-image: url(../../static/images/library.jpg)';
+      let cover = { 'background-image': 'url(../../../static/uploads/covers/' + pic + ')' }
+      if ( pic.length > 0) {
+         return cover
+      } else {
+        return fakeCover
+      }
+    },
     // fetchBooks () {
     //   this.axios.get('http://localhost:3000/book')
     //     .then(response => {

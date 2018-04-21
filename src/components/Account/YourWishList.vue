@@ -24,7 +24,7 @@
 
     <div v-if="!this.books.length" class="noData">
       <p>Oops, no books in your wish list yet</p>
-      <p>Click on Add a new book below</p>
+      <p>Click on Add a new book above</p>
     </div>
     <div v-if="this.books.length" class="row">
       <div class="col-md-4 paddingMobile" v-for="book in orderBy(books, filter)">
@@ -33,7 +33,8 @@
             <h6>{{ book.name_book }}</h6>
             <h6>{{ book.author_book }} - {{ book.year_book }}</h6>
           </div>
-          <div class="col-md-6 illustration"></div>
+          <div class="col-md-6 illustration"
+              :style="manageCoverBook(book.picture_path_book)"></div>
           <p class="col-md-6">{{ book.description_book }}</p>
           <div class="col-md-12" style="margin-top: 7px">
             <router-link :to="{ path: 'updatewishbook/' + book.id_book}" append><button class=" btn btn-outline-success btn-sm" type="button" name="button" >UPDATE</button></router-link>
@@ -104,6 +105,15 @@ export default {
     added_last () {
       this.books.reverse();
     },
+    manageCoverBook (pic) {
+      const fakeCover = 'background-image: url(../../static/images//library.jpg)';
+      let cover = { 'background-image': 'url(../../../static/uploads/covers/' + pic + ')' }
+      if ( pic.length > 0) {
+         return cover
+      } else {
+        return fakeCover
+      }
+    },
     fetchData () {
       this.axios.get('http://localhost:3000/' + this.id_user + '/wishbook')
         .then(response => {
@@ -157,7 +167,6 @@ export default {
   padding-right: 0px !important;
 }
 .illustration {
-  background-image: url(../../assets/library.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

@@ -31,19 +31,19 @@
 
           <ul class="nav nav-pills hamLog col-12" v-if="auth" >
             <li class="nav-item">
-              <router-link class="nav-link" active-class="active" exact :to="{ name: 'Account', params: {id_user} }">Account</router-link>
+              <router-link class="nav-link" active-class="active" exact :to="{ name: 'Account', params: getUserId }">Account</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" active-class="active" :to="{ name: 'YourLibrary', params: {id_user} }">Library</router-link>
+              <router-link class="nav-link" active-class="active" :to="{ name: 'YourLibrary', params: getUserId }">Library</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" active-class="active" :to="{ name: 'YourLists', params: {id_user} }">Lists</router-link>
+              <router-link class="nav-link" active-class="active" :to="{ name: 'YourLists', params: getUserId }">Lists</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" active-class="active" :to="{ name: 'YourWishList', params: {id_user} }">Wish List</router-link>
+              <router-link class="nav-link" active-class="active" :to="{ name: 'YourWishList', params: getUserId }">Wish List</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" active-class="active" :to="{ name: 'YourPersonalInformations', params: {id_user} }">Personal Infos</router-link>
+              <router-link class="nav-link" active-class="active" :to="{ name: 'YourPersonalInformations', params: getUserId }">Personal Infos</router-link>
             </li>
             <button @click="onLogout" v-if="auth" type="button" class="btn btn-outline-success btn-sm btn-logout" >LOG OUT</button>
         </ul>
@@ -76,9 +76,9 @@ export default {
     getUserId () {
       console.log('this.auth', this.auth);
       if (this.auth && this.id_user === '') {
-        return this.id_user = this.$route.params.id_user
-      } else if (this.auth && this.user !== '') {
-        return this.id_user
+        console.log('this.id_user',this.id_user);
+        // return this.id_user = this.$route.params.id_user
+        return this.id_user = localStorage.getItem('id_user')
       } else {
         return this.id_user = ''
       }

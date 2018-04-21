@@ -24,7 +24,7 @@
 
     <div v-if="!this.lists.length" class="noData">
       <p>Oops, no list in your lists yet</p>
-      <p>Click on Add a new list below</p>
+      <p>Click on Add a new list above</p>
     </div>
     <div v-if="this.lists.length" class="row">
       <div class="col-md-4 paddingMobile" v-for="list in lists">

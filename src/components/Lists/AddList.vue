@@ -28,7 +28,8 @@
                         <h6 style="font-size:10px">{{ book.name_book }}</h6>
                         <h6 style="font-size:10px">{{ book.author_book }}</h6>
                       </div>
-                      <div class="col-md-12 illustration"></div>
+                      <div class="col-md-12 illustration"
+                          :style="manageCoverBook(book.picture_path_book)"></div>
                     </div>
                   </li>
                 </transition-group>
@@ -64,7 +65,7 @@
                   <h6 style="font-size:10px">{{ book.name_book }}</h6>
                   <h6 style="font-size:10px">{{ book.author_book }}</h6>
                 </div>
-                <div class="col-md-12 illustration"></div>
+                <div class="col-md-12 illustration" :style="manageCoverBook(book.picture_path_book)"></div>
               </div>
           </li>
         </transition-group>
@@ -102,6 +103,15 @@ export default {
     };
   },
   methods: {
+    manageCoverBook (pic) {
+      const fakeCover = 'background-image: url(../../../static/images//library.jpg)';
+      let cover = { 'background-image': 'url(../../../static/uploads/covers/' + pic + ')' }
+      if ( pic.length > 0) {
+         return cover
+      } else {
+        return fakeCover
+      }
+    },
     fetchData () {
       this.axios.get('http://localhost:3000/' + this.id_user + '/book')
         .then(response => {
@@ -113,7 +123,6 @@ export default {
       .then((res) => {
         this.username = res.data[0].username;
       })
-      // return this.username;
     },
     onSubmit() {
       let listIdBook = [];
@@ -123,8 +132,6 @@ export default {
       const formData = {
         name_list: this.name_list,
         description_list: this.description_list,
-        // books_arr: listIdBook,
-        // books_arr: this.list,
         user_id: this.id_user,
         username: this.username,
       };
@@ -145,7 +152,6 @@ export default {
       }).then(() => {
         this.$router.go(-1);
       })
-
     },
     // orderList () {
     //   this.list = this.list.sort((one,two) =>{return one.order-two.order; })
