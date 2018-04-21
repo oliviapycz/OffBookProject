@@ -46,7 +46,7 @@
     </div> -->
 
       <div class="row" v-if="openedModal">
-        <div class="col-md-8 col-md-offset-2 modale" v-for="book in selectBook">
+        <div class="col-md-4 col-md-offset-4 modale" v-for="book in selectBook">
           <p>Are you sure you want to delete this book?</p>
           <div class="">
             <div class="row col-md-12">
@@ -169,9 +169,9 @@ export default {
   box-shadow: 5px 5px 5px grey;
   background-color: white;
   z-index: 500;
-  position: absolute;
+  position: fixed;
   left: 20%;
-  top: 15%;
+  top: 45%;
   margin: auto;
 }
 h4 {

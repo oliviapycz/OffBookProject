@@ -36,7 +36,7 @@
       <router-link :to="{ name: 'YourLibrary', params: {id_user} }"><button class="btn btn-success btn-sm" type="button" name="button">SEE ALL</button></router-link>
     </div>
       <div class="row" v-if="openedModal">
-        <div class="col-md-4 col-md-offset-3 modale" v-for="book in selectBook">
+        <div class="col-md-4 col-md-offset-4 modale" v-for="book in selectBook">
           <p>Are you sure you want to delete this book?</p>
           <div class="">
             <div class="row col-md-12">
@@ -133,7 +133,7 @@
             <p class="col-md-6">{{ book.description_book }}</p>
             <div class="col-md-12" style="margin-top: 7px">
               <router-link :to="{ path:  id_user + '/wishlist/updatewishbook/' + book.id_book}" ><button class=" btn btn-outline-success btn-sm" type="button" name="button" >UPDATE</button></router-link>
-              <button type="button" name="button" class=" btn btn-outline-success btn-sm" @click="(() =>{triggerModal(book.id_book)})">DELETE</button>
+              <button type="button" name="button" class=" btn btn-outline-success btn-sm" @click="(() =>{triggerModalWishBook(book.id_book)})">DELETE</button>
               <button @click="(()=>{addToLibrary(book.id_book)})" class=" btn btn-outline-success btn-sm btn-sm" type="button" name="button">MOVE TO LIBRARY</button>
             </div>
           </div>
@@ -144,8 +144,8 @@
         <router-link :to="{ name: 'YourWishList', params: {id_user} }"><button class="btn btn-success btn-sm" type="button" name="button">SEE ALL</button></router-link>
       </div>
 
-        <div class="row" v-if="openedModal">
-          <div class="col-md-8 col-md-offset-2 modale" v-for="book in wishBook">
+        <div class="row" v-if="openedWishModal">
+          <div class="col-md-4 col-md-offset-4 modale" v-for="book in selectWishBook">
             <p>Are you sure you want to delete this book?</p>
             <div class="">
               <div class="row col-md-12">
@@ -155,8 +155,8 @@
                 </div>
               </div>
             </div>
-            <button class="btn btn-outline-success btn-sm" type="button" @click="openedModal = false">CANCEL</button>
-            <button class="btn btn-outline-danger btn-sm" type="button" @click="(() =>{deleteBook(book.id_book)})">CONFIRM</button>
+            <button class="btn btn-outline-success btn-sm" type="button" @click="openedWishModal = false">CANCEL</button>
+            <button class="btn btn-outline-danger btn-sm" type="button" @click="(() =>{deleteWishBook(book.id_book)})">CONFIRM</button>
           </div>
         </div>
     </div>
@@ -192,7 +192,9 @@ export default {
       moveBooks: [],
       wishBooks: [],
       selectBook: [],
+      selectWishBook: [],
       openedModal: false,
+      openedWishModal: false,
       id_book: '',
       listedBooks: [],
     };
@@ -232,23 +234,37 @@ export default {
         .then(response => {
           this.books = response.data;
         })
-        .then(this.fetchData());
+        .then(() => {
+          this.fetchData()
+        });
         // this.$router.go(-1);
     },
     deleteWishBook (id_book) {
-      this.openedModal = false;
-      this.axios.delete('http://localhost:3000/book/' + id_book)
+      this.openedWishModal = false;
+      this.axios.delete('http://localhost:3000/wishbook/' + id_book)
         .then(response => {
           this.books = response.data;
         })
-        .then(this.fetchData());
+        .then(()=> {
+          this.fetchDataWish()
+          this.fetchData()
+        });
         // this.$router.go(-1);
     },
     triggerModal (id_book) {
+      console.log('triggerModal', id_book);
       this.openedModal = true;
       this.axios.get('http://localhost:3000/book/' + id_book)
         .then(response => {
+          console.log('response.data',JSON.stringify(response.data));
           return this.selectBook = response.data;
+        });
+    },
+    triggerModalWishBook (id_book) {
+      this.openedWishModal = true;
+      this.axios.get('http://localhost:3000/wishbook/' + id_book)
+        .then(response => {
+          return this.selectWishBook = response.data;
         });
     },
     addToLibrary (id_book) {
@@ -262,7 +278,8 @@ export default {
         }).then(() => {
           this.axios.delete('http://localhost:3000/wishbook/' + id_book)
         }).then(() => {
-          this.$router.replace('/account/' + this.id_user)
+          this.fetchData();
+          this.fetchDataWish();
         });
     }
   },
@@ -300,7 +317,7 @@ export default {
   box-shadow: 5px 5px 5px grey;
   background-color: white;
   z-index: 500;
-  position: absolute;
+  position: fixed;
   left: 20%;
   top: 45%;
   margin: auto;
