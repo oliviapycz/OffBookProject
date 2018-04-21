@@ -47,7 +47,7 @@ export default {
   color: rgba(160, 111, 77, 0.5);;
  }
  .leftPart {
-  background-image: url(../../assets/bookspils.jpeg);
+  background-image: url(../../assets/bookspils-min.jpeg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
