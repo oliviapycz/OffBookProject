@@ -87,10 +87,9 @@ p {
       font-size: 1rem;
     }
   }
-/*#navbar {
-  margin-bottom: 30px;
-}
-#footer {
-  margin-top: 30px;
-}*/
+  #footer {
+    position: relative;
+    bottom: 0;
+    width: 100vw;
+  }
 </style>
