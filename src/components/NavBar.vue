@@ -6,24 +6,24 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse navClass" id="navbarNavAltMarkup">
+    <div class="collapse navbar-collapse navClass" id="navbarNavAltMarkup" data-toggle="collapse">
 
       <div class="navbar-nav">
-        <router-link class="nav-item nav-link" active-class="active" exact to="/">Home</router-link>
-        <router-link class="nav-item nav-link" active-class="active" exact to="/listofbooks">List of Books</router-link>
-        <router-link class="nav-item nav-link" active-class="active" exact to="/aboutus">About Us</router-link>
+        <router-link data-toggle="collapse" data-target=".navbar-collapse" class="nav-item nav-link" active-class="active" exact to="/">Home</router-link>
+        <router-link data-toggle="collapse" data-target=".navbar-collapse" class="nav-item nav-link" active-class="active" exact to="/listofbooks">List of Books</router-link>
+        <router-link data-toggle="collapse" data-target=".navbar-collapse" class="nav-item nav-link" active-class="active" exact to="/aboutus">About Us</router-link>
       </div>
 
       <ul class="nav nav-pills">
         <div class="hamToLog">
           <li v-if="!auth" role="presentation">
             <router-link :to="{ name: 'LogIn'}">
-              <button type="button" class="btn btn-outline-success btn-sm">LOG IN</button>
+              <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="btn btn-outline-success btn-sm">LOG IN</button>
             </router-link>
           </li>
           <li v-if="!auth" role="presentation">
             <router-link :to="{ name: 'Register'}">
-              <button type="button" class="btn btn-outline-success btn-sm">REGISTER</button>
+              <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="btn btn-outline-success btn-sm">REGISTER</button>
             </router-link>
           </li>
         </div>
@@ -31,21 +31,21 @@
 
           <ul class="nav nav-pills hamLog col-12" v-if="auth" >
             <li class="nav-item">
-              <router-link class="nav-link" active-class="active" exact :to="{ name: 'Account', params: getUserId }">Account</router-link>
+              <router-link data-toggle="collapse" data-target=".navbar-collapse" class="nav-link" active-class="active" exact :to="{ name: 'Account', params: getUserId }">Account</router-link>
+            </li>
+            <li class="nav-item ">
+              <router-link data-toggle="collapse" data-target=".navbar-collapse" class="nav-link" active-class="active" :to="{ name: 'YourLibrary', params: getUserId }">Library</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" active-class="active" :to="{ name: 'YourLibrary', params: getUserId }">Library</router-link>
+              <router-link data-toggle="collapse" data-target=".navbar-collapse" class="nav-link" active-class="active" :to="{ name: 'YourLists', params: getUserId }">Lists</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" active-class="active" :to="{ name: 'YourLists', params: getUserId }">Lists</router-link>
+              <router-link data-toggle="collapse" data-target=".navbar-collapse" class="nav-link" active-class="active" :to="{ name: 'YourWishList', params: getUserId }">Wish List</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" active-class="active" :to="{ name: 'YourWishList', params: getUserId }">Wish List</router-link>
+              <router-link data-toggle="collapse" data-target=".navbar-collapse" class="nav-link" active-class="active" :to="{ name: 'YourPersonalInformations', params: getUserId }">Personal Infos</router-link>
             </li>
-            <li class="nav-item">
-              <router-link class="nav-link" active-class="active" :to="{ name: 'YourPersonalInformations', params: getUserId }">Personal Infos</router-link>
-            </li>
-            <button @click="onLogout" v-if="auth" type="button" class="btn btn-outline-success btn-sm btn-logout" >LOG OUT</button>
+            <button @click="onLogout" v-if="auth" type="button" data-toggle="collapse" data-target=".navbar-collapse" class="btn btn-outline-success btn-sm btn-logout" >LOG OUT</button>
         </ul>
 
 
@@ -55,6 +55,7 @@
     </div>
 
   </nav>
+
 
 
 </template>
