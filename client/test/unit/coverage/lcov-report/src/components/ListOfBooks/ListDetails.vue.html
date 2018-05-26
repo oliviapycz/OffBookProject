@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/components/ListOfBooks/ListDetails.vue</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">All files</a> / <a href="index.html">src/components/ListOfBooks</a> ListDetails.vue
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/28</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/21</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;<span class="cstat-no" title="statement not covered" >t<span class="fstat-no" title="function not covered" >em</span>plate lang="html"&gt;</span>
+  &lt;div class="wrapper-list-details col-md-11"&gt;
+    &lt;div class="row" v-for=" list in lists"&gt;
+<span class="cstat-no" title="statement not covered" >      &lt;div class="row col-md-6 col-12"&gt;</span>
+        &lt;div class="title col-12"&gt;
+          &lt;h4&gt;{{ list.name_list }}&lt;/h4&gt;
+        &lt;/div&gt;
+        &lt;h5 class<span class="cstat-no" title="statement not covered" >="col-12"&gt; &lt;i&gt;list proposed by&lt;/i&gt; {{ list.usern</span>ame }}&lt;/h5&gt;
+      &lt;/div&gt;
+      &lt;p class="co<span class="cstat-no" title="statement not covered" >l-md-6" style="background-color: li</span>ghtgreen; padding: 10px"&gt;{{ list.description_list }}&lt;/p&gt;
+      &lt;div v-for="(l, index) in list.books" :key="index" class="row box" style="margin-bottom: 5px !important"&gt;
+        &lt;<span class="fstat-no" title="function not covered" >div class="col-md-2 ill</span>ustrati<span class="cstat-no" title="statement not covered" >on"</span>
+          :style="manageCoverBook(l.picture_path_book)"&gt;
+        &lt;/div&gt;
+        &lt;div class="col-md-10 row"&gt;
+          &lt;li class="col-md-8 offset-md-2" style="list-style-type: none; margin-bottom: 15px"&gt;{{ l.author_book }} - {{ l.name_book }} - {{ l.year_book }}&lt;/li&gt;
+          &lt;p class="col-md-8 offset-md-2"&gt; {{ l.description_book }}&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&nbsp;
+&lt;script&gt;
+export default {
+  data () {
+    return {
+      // books: [],
+      lists: [],
+      id_list: this.$route.params.id_list,
+    };
+  },
+  methods: {
+    manageCoverBook (pic) {
+      const fakeCover = 'background-image: url(../../static/images/library.jpg)';
+      let cover = { 'background-image': 'url(../../../static/uploads/covers/' + pic + ')' }
+      if ( pic.length &gt; 0) {
+<span class="cstat-no" title="statement not covered" >         return cover</span>
+      } else {<span class="fstat-no" title="function not covered" ></span>
+<span class="cstat-no" title="statement not covered" >        return fakeCover</span>
+      }
+    },
+    // fetchBooks () {
+    //   this.axios.get('http://localhost:3000/book')
+    //     .then(response =&gt; {
+    //       console.log('books', response.data);
+    //       this.books = response.data;
+    //     });<span class="fstat-no" title="function not covered" ></span>
+    // },<span class="cstat-no" title="statement not covered" ></span>
+    fetchList () {<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >      this.axios.get('http://localhost:3000/lists/' + this.id_list)</span>
+<span class="cstat-no" title="statement not covered" >        .then(response</span> =&gt; {
+          this.lists = response.data;
+<span class="cstat-no" title="statement not covered" >          console.log('[==</span>=this.list===]', JSON.stringify(this.lists));
+        });
+    }
+  },
+  mounted() {
+    // this.fetchBooks();
+    this.fetchList();
+  }
+}
+&lt;/script&gt;
+&nbsp;
+&lt;style lang="css" scoped<span class="fstat-no" title="function not covered" >=""&gt;</span>
+/******MOBILE FIRS<span class="cstat-no" title="statement not covered" >T****</span>**/
+&nbsp;
+.illus<span class="cstat-no" title="statement not covered" >tration {<span class="fstat-no" title="function not covered" ></span></span>
+  backgr<span class="cstat-no" title="statement not covered" >ound-image: url(../../assets/</span>library.jpg);
+  backgr<span class="cstat-no" title="statement not covered" >ound-position: center;</span>
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 20vh;
+}<span class="fstat-no" title="function not covered" ></span>
+.title {
+  bo<span class="cstat-no" title="statement not covered" >rder-bottom: 2px s</span>olid lightgreen;
+  margin-top: 10px !important;
+  text-align: center;
+  margin-bottom: 15px !important;
+<span class="cstat-no" title="statement not covered" >}<span class="cstat-no" title="statement not covered" ></span></span>
+.box{<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  background-color: white;<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ></span></span></span></span></span></span></span></span></span></span>
+<span class="cstat-no" title="statement not covered" >  padding: 5px 8px !important;</span>
+  border: 2px solid lightgrey;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 0px lightgrey;
+}
+h5 {
+  text-align: center;
+}
+&nbsp;
+&nbsp;
+/******DESKTOP******/
+@media (min-width: 640px) {
+  .wrapper-list-details {
+    margin-top: 10px !important;
+    margin: auto;
+    padding: 5px;
+    width: 80%;
+  }
+  h5 {
+    text-align: inherit;
+  }
+}
+&lt;/style&gt;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Apr 22 2018 13:37:03 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

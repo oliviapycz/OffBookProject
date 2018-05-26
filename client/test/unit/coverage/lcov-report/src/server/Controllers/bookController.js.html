@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/server/Controllers/bookController.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">All files</a> / <a href="index.html">src/server/Controllers</a> bookController.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/125</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/51</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/96</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const express = require('ex<span class="cstat-no" title="statement not covered" >press')</span>
+const app <span class="cstat-no" title="statement not covered" >= express.Router(</span>)
+const db <span class="cstat-no" title="statement not covered" >= require('../Models/db'</span>)
+const model <span class="cstat-no" title="statement not covered" >= require('../Models/bookModel'</span>)
+<span class="cstat-no" title="statement not covered" >const { restructureDataListWithBooks } = require(</span>'../utils/restructureDataListWi<span class="cstat-no" title="statement not covered" >thBooks')</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >app.get('/book', <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  model.getBooks()</span>
+    .th<span class="fstat-no" title="function not covered" >en</span>(result =&gt; res.js<span class="cstat-no" title="statement not covered" >on(result))</span>
+    .cat<span class="fstat-no" title="function not covered" >ch</span>(err =&gt; res.js<span class="cstat-no" title="statement not covered" >on(err))</span>
+});
+&nbsp;
+<span class="cstat-no" title="statement not covered" >app.get('/wishbook', <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  model.getWishBooks()</span>
+    .th<span class="fstat-no" title="function not covered" >en</span>(result =&gt; res.js<span class="cstat-no" title="statement not covered" >on(result))</span>
+    .cat<span class="fstat-no" title="function not covered" >ch</span>(err =&gt; res.js<span class="cstat-no" title="statement not covered" >on(err))</span>
+});
+&nbsp;
+<span class="cstat-no" title="statement not covered" >app.get('/lists', <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  model.getAllLists()</span>
+    .th<span class="fstat-no" title="function not covered" >en</span>(result =&gt; res.js<span class="cstat-no" title="statement not covered" >on(result))</span>
+    .cat<span class="fstat-no" title="function not covered" >ch</span>(err =&gt; res.js<span class="cstat-no" title="statement not covered" >on(err))</span>
+});
+&nbsp;
+<span class="cstat-no" title="statement not covered" >app.get('/lists/:id_list', <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {</span>
+  const {id_<span class="cstat-no" title="statement not covered" >list} = req.params;</span>
+<span class="cstat-no" title="statement not covered" >  model.getListByListId(id_list)</span>
+    .th<span class="fstat-no" title="function not covered" >en</span>(result =&gt; {
+<span class="cstat-no" title="statement not covered" >      restructureDataListWithBooks(result)</span>
+<span class="cstat-no" title="statement not covered" >      res.json(lists)</span>
+    })
+    .cat<span class="fstat-no" title="function not covered" >ch</span>(err =&gt; res.js<span class="cstat-no" title="statement not covered" >on(err))</span>
+});
+&nbsp;
+<span class="cstat-no" title="statement not covered" >app.get('/book/:id_book', <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {</span>
+  const {id_<span class="cstat-no" title="statement not covered" >book} = req.params;</span>
+<span class="cstat-no" title="statement not covered" >  model.getBooksById(id_book)</span>
+    .th<span class="fstat-no" title="function not covered" >en</span>(result =&gt; res.js<span class="cstat-no" title="statement not covered" >on(result))</span>
+    .cat<span class="fstat-no" title="function not covered" >ch</span>(err =&gt; res.js<span class="cstat-no" title="statement not covered" >on(err))</span>
+});
+&nbsp;
+<span class="cstat-no" title="statement not covered" >app.get('/wishbook/:id_book', <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {</span>
+  const {id_<span class="cstat-no" title="statement not covered" >book} = req.params;</span>
+<span class="cstat-no" title="statement not covered" >  model.getWishBooksById(id_book)</span>
+    .th<span class="fstat-no" title="function not covered" >en</span>(result =&gt; res.js<span class="cstat-no" title="statement not covered" >on(result))</span>
+    .cat<span class="fstat-no" title="function not covered" >ch</span>(err =&gt; res.js<span class="cstat-no" title="statement not covered" >on(err))</span>
+});
+&nbsp;
+<span class="cstat-no" title="statement not covered" >app.post('/:id_user/book', <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt;{</span>
+  const {id_<span class="cstat-no" title="statement not covered" >user} = req.params;</span>
+<span class="cstat-no" title="statement not covered" >  const {na</span>me_book, aut<span class="cstat-no" title="statement not covered" >hor_book, year_book,</span> description_b<span class="cstat-no" title="statement not covered" >ook, picture_path_book</span>,user_id} = <span class="cstat-no" title="statement not covered" >req.body;<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ></span></span></span></span>
+<span class="cstat-no" title="statement not covered" >  model.addBooks({name_book, author_book, year_book, description_book, picture_path_book,user_id})</span>
+    .th<span class="fstat-no" title="function not covered" >en</span>(result =&gt; res.js<span class="cstat-no" title="statement not covered" >on(result))</span>
+    .cat<span class="fstat-no" title="function not covered" >ch</span>(err =&gt; res.js<span class="cstat-no" title="statement not covered" >on(err))</span>
+});
+&nbsp;
+<span class="cstat-no" title="statement not covered" >app.post('/:id_user/wishbook', <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {</span>
+  const {id_<span class="cstat-no" title="statement not covered" >user} = req.params;</span>
+<span class="cstat-no" title="statement not covered" >  const {na</span>me_book, aut<span class="cstat-no" title="statement not covered" >hor_book, year_book, </span>description_bo<span class="cstat-no" title="statement not covered" >ok, picture_path_book,u</span>ser_id} = re<span class="cstat-no" title="statement not covered" >q.body;<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ></span></span></span></span>
+<span class="cstat-no" title="statement not covered" >  model.addWishBooks({name_book, author_book, year_book, description_book, picture_path_book,user_id})</span>
+    .th<span class="fstat-no" title="function not covered" >en</span>(result =&gt; res.js<span class="cstat-no" title="statement not covered" >on(result))</span>
+    .cat<span class="fstat-no" title="function not covered" >ch</span>(err =&gt; res.js<span class="cstat-no" title="statement not covered" >on(err))</span>
+});
+&nbsp;
+<span class="cstat-no" title="statement not covered" >app.post('/:id_user/lists', <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {</span>
+  const {id_<span class="cstat-no" title="statement not covered" >user} = req.params;</span>
+<span class="cstat-no" title="statement not covered" >  const {na</span>me_list, des<span class="cstat-no" title="statement not covered" >cription_list,  user_</span>id, username} = req<span class="cstat-no" title="statement not covered" >.body;<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ></span></span></span>
+<span class="cstat-no" title="statement not covered" >  model.addList({name_list, description_list, user_id, username})</span>
+    .th<span class="fstat-no" title="function not covered" >en</span>(result =&gt; res.js<span class="cstat-no" title="statement not covered" >on(result))</span>
+    .cat<span class="fstat-no" title="function not covered" >ch</span>(err =&gt; res.js<span class="cstat-no" title="statement not covered" >on(err))</span>
+});
+&nbsp;
+<span class="cstat-no" title="statement not covered" >app.post('/:id_user/list-books', <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {</span>
+  const {id_<span class="cstat-no" title="statement not covered" >user} = req.params;</span>
+<span class="cstat-no" title="statement not covered" >  const {li</span>st_id, boo<span class="cstat-no" title="statement not covered" >k_id} = req.body;<span class="cstat-no" title="statement not covered" ></span></span>
+<span class="cstat-no" title="statement not covered" >  model.associateBooksToList({list_id, book_id})</span>
+    .th<span class="fstat-no" title="function not covered" >en</span>(result =&gt; res.js<span class="cstat-no" title="statement not covered" >on(result))</span>
+    .cat<span class="fstat-no" title="function not covered" >ch</span>(err =&gt; res.js<span class="cstat-no" title="statement not covered" >on(err))</span>
+});
+&nbsp;
+<span class="cstat-no" title="statement not covered" >app.put('/book/:id_book', <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {</span>
+  const {id_<span class="cstat-no" title="statement not covered" >book} = req.params;</span>
+<span class="cstat-no" title="statement not covered" >  const {na</span>me_book, aut<span class="cstat-no" title="statement not covered" >hor_book, year_book, </span>description_bo<span class="cstat-no" title="statement not covered" >ok, picture_path_book} </span>= req.body;<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ></span></span></span>
+<span class="cstat-no" title="statement not covered" >  model.updateBooks({id_book, name_book, author_book, year_book, description_book, picture_path_book})</span>
+    .th<span class="fstat-no" title="function not covered" >en</span>(result =&gt; res.js<span class="cstat-no" title="statement not covered" >on(result))</span>
+    .cat<span class="fstat-no" title="function not covered" >ch</span>(err =&gt; res.js<span class="cstat-no" title="statement not covered" >on(err))</span>
+});
+&nbsp;
+<span class="cstat-no" title="statement not covered" >app.put('/wishbook/:id_book', <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {</span>
+  const {id_<span class="cstat-no" title="statement not covered" >book} = req.params;</span>
+<span class="cstat-no" title="statement not covered" >  const {na</span>me_book, aut<span class="cstat-no" title="statement not covered" >hor_book, year_book, </span>description_bo<span class="cstat-no" title="statement not covered" >ok, picture_path_book} </span>= req.body;<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ></span></span></span>
+<span class="cstat-no" title="statement not covered" >  model.updateWishBooks({id_book, name_book, author_book, year_book, description_book, picture_path_book})</span>
+    .th<span class="fstat-no" title="function not covered" >en</span>(result =&gt; res.js<span class="cstat-no" title="statement not covered" >on(result))</span>
+    .cat<span class="fstat-no" title="function not covered" >ch</span>(err =&gt; res.js<span class="cstat-no" title="statement not covered" >on(err))</span>
+});
+&nbsp;
+<span class="cstat-no" title="statement not covered" >app.get('/:id_user/book', <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {</span>
+  const {id_<span class="cstat-no" title="statement not covered" >user} = req.params;</span>
+<span class="cstat-no" title="statement not covered" >  model.getBooksByUserId(id_user)</span>
+  .then<span class="fstat-no" title="function not covered" >(r</span>esult =&gt; res.json<span class="cstat-no" title="statement not covered" >(result))</span>
+  .catch<span class="fstat-no" title="function not covered" >(e</span>rr =&gt; res.json<span class="cstat-no" title="statement not covered" >(err))</span>
+});
+&nbsp;
+<span class="cstat-no" title="statement not covered" >app.get('/:id_user/lists', <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {</span>
+  const {id_<span class="cstat-no" title="statement not covered" >user} = req.params;</span>
+<span class="cstat-no" title="statement not covered" >  model.getListsByUserId(id_user)</span>
+    .th<span class="fstat-no" title="function not covered" >en</span>(result =&gt; {
+<span class="cstat-no" title="statement not covered" >         restructureDataListWithBooks(resu</span>lt)
+<span class="cstat-no" title="statement not covered" >      res.json(lists)</span>
+    })
+    .cat<span class="fstat-no" title="function not covered" >ch</span>(err =&gt; res.js<span class="cstat-no" title="statement not covered" >on(err))</span>
+});
+&nbsp;
+<span class="cstat-no" title="statement not covered" >app.get('/:id_user/wishbook', <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {</span>
+  const {id_<span class="cstat-no" title="statement not covered" >user} = req.params;</span>
+<span class="cstat-no" title="statement not covered" >  model.getWishBooksByUserId(id_user)</span>
+    .th<span class="fstat-no" title="function not covered" >en</span>(result =&gt; res.js<span class="cstat-no" title="statement not covered" >on(result))</span>
+    .cat<span class="fstat-no" title="function not covered" >ch</span>(err =&gt; res.js<span class="cstat-no" title="statement not covered" >on(err))</span>
+});
+&nbsp;
+// app.get('/:id_user/book/byAuthor', function(req, res){
+//   const {id_user} = req.params;
+//   function callback (result) {
+//     res.json(result);
+//   }
+//   model.getBooksByUserIdOrderByAuthor({id_user}, callback);
+// });
+//
+// app.get('/:id_user/book/byYear', function(req, res){
+//   const {id_user} = req.params;
+//   function callback (result) {
+//     res.json(result);
+//   }
+//   model.getBooksByUserIdOrderByYear({id_user}, callback);
+// });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >app.delete('/book/:id_book', <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {</span>
+  const {id_<span class="cstat-no" title="statement not covered" >book} = req.params;</span>
+<span class="cstat-no" title="statement not covered" >  model.deleteBooks(id_book)</span>
+    .th<span class="fstat-no" title="function not covered" >en</span>(result =&gt; res.js<span class="cstat-no" title="statement not covered" >on(result))</span>
+    .cat<span class="fstat-no" title="function not covered" >ch</span>(err =&gt; res.js<span class="cstat-no" title="statement not covered" >on(err))</span>
+});
+&nbsp;
+<span class="cstat-no" title="statement not covered" >app.delete('/wishbook/:id_book', <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {</span>
+  const {id_<span class="cstat-no" title="statement not covered" >book} = req.params;</span>
+<span class="cstat-no" title="statement not covered" >  model.deleteWishBooks(id_book)</span>
+    .th<span class="fstat-no" title="function not covered" >en</span>(result =&gt; res.js<span class="cstat-no" title="statement not covered" >on(result))</span>
+    .cat<span class="fstat-no" title="function not covered" >ch</span>(err =&gt; res.js<span class="cstat-no" title="statement not covered" >on(err))</span>
+});
+&nbsp;
+// .post('/', (req, res) =&gt; {
+//     const { lastname, firstname } = req.body;
+//     model.createUser({ firstname, lastname })
+//       .then(result =&gt; res.send(result))
+//       .catch(err =&gt; console.log(err))
+// })
+//
+// app.get("/user",function(req,res){
+// connection.query('SELECT * from user LIMIT 2', function(err, rows, fields) {
+// connection.end();
+//   if (!err)
+//     console.log('The solution is: ', rows);
+//   else
+//     console.log('Error while performing Query.');
+//   });
+// });
+&nbsp;
+&nbsp;
+// app.get('/user', (req, res) =&gt; {
+//   connection.connect(function(err) {
+//     connection.query("SELECT * FROM users", function (err, result, fields) {
+//       if (err) throw err;
+//       console.log(result);
+//     });
+//   });
+// })
+&nbsp;
+// app.get('/', (req, res) =&gt; {
+//   res.send('Hello to Me and to the reload and nodemon')
+// })
+<span class="cstat-no" title="statement not covered" >module.exports = app;</span>
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Apr 22 2018 13:37:03 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>
