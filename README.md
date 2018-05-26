@@ -30,4 +30,4 @@
 ### 8 - Mobilité numérique
   > Rendre l'application responsive avec l'utilisation de MEDIAQUERIES, SASS, BOOTSTRAP
 
-  ![screenshots](https://github.com/oliviapycz/OffBookProject/raw/develop/docs/offbook-home.jpg)
+  ![screenshots](https://github.com/oliviapycz/OffBookProject/raw/develop/offbook-home.jpg)
