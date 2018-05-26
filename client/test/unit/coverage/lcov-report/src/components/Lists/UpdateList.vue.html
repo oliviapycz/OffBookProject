@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/components/Lists/UpdateList.vue</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">All files</a> / <a href="index.html">src/components/Lists</a> UpdateList.vue
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/40</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/22</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/17</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/23</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;<span class="cstat-no" title="statement not covered" >t<span class="fstat-no" title="function not covered" >em</span>plate lang="html"&gt;</span>
+  &lt;div class="wrapper-update row"&gt;
+    &lt;div class="col-md-6 offset-md-6"&gt;
+<span class="cstat-no" title="statement not covered" >        &lt;h4 class="offset-md-5 col-md-4"&gt;Update a Wish Book&lt;/h4&gt;</span>
+      &lt;form class=" col-md-12" @submit.prevent="onSubmit" v-for="book in wishBooks"&gt;
+        &lt;fieldset&gt;
+          &lt;div class="form-group row marginTop15"&gt;
+            &lt;<span class="cstat-no" title="statement not covered" >label class="col-</span>md-2" for="updated_name_book"&gt;Title&lt;/label&gt;
+            &lt;input
+<span class="cstat-no" title="statement not covered" >              type="text"</span>
+              id="updated_name_book"
+<span class="fstat-no" title="function not covered" >              class="form-contro</span>l col-m<span class="cstat-no" title="statement not covered" >d-10"</span>
+              :value = "book.name_book"
+<span class="cstat-no" title="statement not covered" >              @input = "name_book = $event.targ</span>et.value"
+              required&gt;
+          &lt;/div&gt;
+          &lt;div class="form-group row marginTop15"&gt;
+            &lt;label class="col-md-2" for="updated_author_book"&gt;Author&lt;/label&gt;
+            &lt;input
+              type="text"
+              id="updated_author_book"
+              class="form-control col-md-10"
+              :value = "book.author_book"
+              @input = "author_book = $event.target.value"
+              required&gt;
+          &lt;/div&gt;
+          &lt;div class="form-group row marginTop15"&gt;
+            &lt;label class="col-md-2" for="updated_year_book"&gt;Year&lt;/label&gt;
+            &lt;input
+              type="number"
+              id="updated_year_book"
+              class="form-control col-md-10"
+              :value = "book.year_book"
+              @input = "year_book = $event.target.value"
+              required&gt;
+          &lt;/div&gt;
+          &lt;div class="from-group row marginTop15"&gt;
+            &lt;label class="col-md-2" for="uescription_book"&gt;Description&lt;/label&gt;
+            &lt;textarea
+              class="form-control col-md-10"
+              id="updated_description_book"
+              :value = "book.description_book"
+              @input = "description_book = $event.target.value"
+              rows="8" cols="80"&gt;&lt;/textarea&gt;
+          &lt;/div&gt;
+          &lt;div class="form-group row marginTop15"&gt;
+            &lt;label class="col-md-2" for="updated_picture_path_book"&gt;Picture&lt;/label&gt;
+            &lt;input
+              type="text"
+              id="updated_picture_path_book"
+              class="form-control col-md-10"
+              :value = "book.picture_path_book"
+              @input = "picture_path_book= $event.target.value"
+              required&gt;
+          &lt;/div&gt;
+          &lt;div class="form-group row marginTop15"&gt;
+            &lt;input  class="btn btn-secondary offset-md-5 col-md-4 " type="submit" name="" value="SEND"&gt;
+          &lt;/div&gt;
+        &lt;/fieldset&gt;
+      &lt;/form&gt;
+      &lt;!-- &lt;form class="col-md-6" @submit.prevent="onSubmit" v-for="book in books"&gt;
+        &lt;fieldset&gt;
+          &lt;div class="form-group"&gt;
+            &lt;label for="updated_name_book"&gt;Title :&lt;/label&gt;
+            &lt;input
+              type="text"
+              id="updated_name_book"
+              class="form-control"
+              :value = "book.name_book"
+              @input = "updated_name_book = $event.target.value"
+              required&gt;
+          &lt;/div&gt;
+          &lt;div class="form-group"&gt;
+            &lt;label for="updated_author_book"&gt;Author :&lt;/label&gt;
+            &lt;input
+              type="text"
+              id="updated_author_book"
+              class="form-control"
+              v-model = "book.author_book"
+              required&gt;
+          &lt;/div&gt;
+          &lt;div class="form-group"&gt;
+            &lt;label for="updated_year_book"&gt;Year :&lt;/label&gt;
+            &lt;input
+              type="number"
+              id="updated_year_book"
+              class="form-control"
+              v-model = "book.year_book"
+              required&gt;
+          &lt;/div&gt;
+          &lt;div class="from-group"&gt;
+            &lt;label for="updated_description_book"&gt;Description :&lt;/label&gt;
+            &lt;textarea
+              class="form-control"
+              id="updated_description_book"
+              v-model = "book.description_book"
+              rows="8" cols="80"&gt;&lt;/textarea&gt;
+          &lt;/div&gt;
+          &lt;div class="form-group"&gt;
+            &lt;label for="updated_picture_path_book"&gt;Picture :&lt;/label&gt;
+            &lt;input
+              type="text"
+              id="updated_picture_path_book"
+              class="form-control"
+              v-model = "book.picture_path_book"
+              required&gt;
+          &lt;/div&gt;
+          &lt;div class="form-group"&gt;
+            &lt;input  class="btn btn-secondary" type="submit" name="" value="SEND"&gt;
+          &lt;/div&gt;
+        &lt;/fieldset&gt;
+      &lt;/form&gt; --&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&nbsp;
+&lt;script&gt;
+// eslint-disable-next-line
+import axios from 'axios';
+&nbsp;
+const urlApi = 'http://localhost:3000/wishbook/';
+export default {
+  props: ['id_user'],
+  data() {
+    return {
+      name_book: '',
+      author_book: '',
+      year_book: '',
+      description_book: '',
+      picture_path_book: '',
+      wishBooks: [],
+<span class="cstat-no" title="statement not covered" >      routeId: this.$route.params.id_book,</span>
+    };
+  },<span class="fstat-no" title="function not covered" ></span>
+  me<span class="cstat-no" title="statement not covered" >thods: {</span>
+&nbsp;
+    getBooks() {
+      const bookApi = urlApi + this.routeId;
+      this.axios.get(bookApi)
+        .then((response) =&gt; {
+        /* eslint-disable */
+          this.wishBooks = response.data;
+        });
+    },
+    onSubmit() {
+      const bookApi = urlApi + this.routeId;
+      const updatedForm<span class="fstat-no" title="function not covered" >Data = {</span>
+        name_book:<span class="cstat-no" title="statement not covered" > this</span>.name_book.length === 0 ? this.wishBooks[0].name_book : this.name_book,
+        author_book: this.author_book.length === 0 ? this.wishBooks[0].author_book : this.author_book,
+        year_book: t<span class="cstat-no" title="statement not covered" >his.year_book.length =</span>== 0 ? this.wishBooks[0].year_book : this.year_book,
+<span class="cstat-no" title="statement not covered" >        description_book: this.desc<span class="fstat-no" title="function not covered" >ri</span>ption_book.length === 0 ? this.wishBooks[0].description_book : this.description_book,</span>
+        picture_path_book: this.picture_path_book.length === 0 ? this.wishBooks[0].picture_path_book : this.picture_path_book
+      };<span class="cstat-no" title="statement not covered" ></span>
+      this.axios.put(bookApi, updatedFormData).then((updatedBooks) =&gt; {
+        /* eslint-disable */
+        this.updatedFor<span class="fstat-no" title="function not covered" >mData = u</span>pdatedBooks.data;
+      });<span class="cstat-no" title="statement not covered" ></span>
+      this.$router.go(-1);
+    },<span class="cstat-no" title="statement not covered" ></span>
+  },<span class="cstat-no" title="statement not covered" ></span>
+  mounted() {
+    this.getBooks();
+  },
+};
+&lt;/script&gt;
+&nbsp;
+&lt;style<span class="cstat-no" title="statement not covered" > lang="css" scoped=""&gt;<span class="fstat-no" title="function not covered" ></span></span>
+.wrapper-update {
+  min-he<span class="cstat-no" title="statement not covered" >ight: 93vh;</span>
+  background-image: url(../../assets/half-books.jpg);
+  back<span class="cstat-no" title="statement not covered" >ground-position: cent</span>er;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 15px <span class="fstat-no" title="function not covered" >!importa</span>nt;
+  /*<span class="cstat-no" title="statement not covered" >opacity: 0.8;*/</span>
+}
+label {
+  padding: inherit !important;
+<span class="cstat-no" title="statement not covered" >}<span class="cstat-no" title="statement not covered" ></span></span>
+.marginTop15 {<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  margin-top: 15px !important<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>
+<span class="cstat-no" title="statement not covered" >}<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ></span></span></span></span></span></span>
+h4 {
+  text-align: center;
+}
+&lt;/style&gt;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Apr 22 2018 13:37:03 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>
