@@ -16,27 +16,9 @@ export default {
 <style lang="css" scoped="">
 footer {
   height: 10vh;
-  background-color: lightgreen;
+  box-shadow: 5px 5px 7px lightgrey !important;
+  background-color: lightgrey;
   text-align: center;
-}
-.card {
-  margin-top: 10px;
-  border: 1px solid white;
-  border-radius: 9px;
-  background-color: white;
-}
-.card1, .card2 {
-  margin: 10px 20px;
-  border: 1px solid lightblue;
-  /*border-radius: 9px;*/
-  background-color: lightblue;
-}
-input, textarea {
-  border: inherit;
-  border-bottom: 1px solid lightgreen;
-}
-.btn-secondary {
-  width: 5vw;
-  text-align: center;
+  color: white;
 }
 </style>

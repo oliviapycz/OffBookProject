@@ -26,14 +26,14 @@
         </div>
       </div>
 
-      <div class="col-md-6">
+      <!-- <div class="col-md-6">
         <div class="row col-md-3 justify-content-center " style="height: 160px; background-color: red">
           <p>your picture</p>
         </div>
         <div class="row justify-content-center">
           <button class="btn btn-success btn-sm" type="button" name="button">UPDATE</button>
         </div>
-      </div>
+      </div> -->
 
       <div class="row" v-if="openedModal" v-for="user in users">
         <div class="col-md-8 col-md-offset-2 modale">
@@ -163,12 +163,10 @@ export default {
 <style lang="css" scoped="">
 .wrapper-info {
   margin-top: 10px !important;
-  /*border: 2px solid lightgreen;*/
   margin: auto;
-  /*border-radius: 3px;
-  box-shadow: 2px 2px 5px lightgreen;*/
   padding: 5px;
   width: 90%;
+  min-height: 80vh !important;
 }
 .title {
   border-bottom: 2px solid lightgreen;

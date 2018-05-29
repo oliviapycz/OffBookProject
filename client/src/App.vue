@@ -31,38 +31,48 @@ export default {
 <style>
 /******MOBILE FIRST******/
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Titilium Web', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   width: 100%;
 }
+
 .container-fluid, .row {
   padding: inherit !important;
   margin: inherit !important;
 }
 h1 {
   font-size: 2rem;
+  font-family: 'Titillium Web', sans-serif;
 }
 h2 {
   font-size: 1.6rem;
+  font-family: 'Titillium Web', sans-serif;
 }
 h3 {
   font-size: 1.4rem;
+  font-family: 'Titillium Web', sans-serif;
 }
 h4 {
   font-size: 1.2rem;
+  font-family: 'Titillium Web', sans-serif;
 }
 h5 {
   font-size: 1rem;
+  font-family: 'Raleway', sans-serif;
 }
 h6 {
   font-size: 0.8rem;
+  font-family: 'Raleway', sans-serif;
 }
 p {
   font-size: 0.7rem;
+  font-family: 'Raleway', sans-serif;
 }
-
+button {
+  font-family: 'Raleway', sans-serif;
+}
   /******DESKTOP******/
   @media (min-width: 640px) {
     h1 {
@@ -76,6 +86,7 @@ p {
     }
     h4 {
       font-size: 1.8rem;
+
     }
     h5 {
       font-size: 1.5rem;
@@ -87,10 +98,8 @@ p {
       font-size: 1rem;
     }
   }
-/*#navbar {
-  margin-bottom: 30px;
-}
 #footer {
-  margin-top: 30px;
-}*/
+  /*position: fixed;
+  margin-bottom: 0 !important;*/
+}
 </style>

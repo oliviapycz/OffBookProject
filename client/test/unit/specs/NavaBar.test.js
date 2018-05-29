@@ -4,8 +4,6 @@ import {  mount, shallow, createLocalVue, RouterLinkStub } from 'vue-test-utils'
 import { __createMocks as createStoreMocks } from '../../../src/store/__mocks__/store';
 import NavBar from '../../../src/components/NavBar.vue'
 
-
-
 // Tell Jest to use the mock
 // implementation of the store.
 jest.mock('../../../src/store/store');
@@ -48,6 +46,25 @@ describe('NavBar.vue', () => {
 // expect(rou.find(RouterLinkStub).props().to).toBe('/')
 //   })
 
+// it('should redirect to homepage', () => {
+//   const rou = mount(NavBar, {
+// stubs: {
+//   RouterLink: 'home'
+// }
+// })
+// expect(rou.find(RouterLink).props().to).toBe('/')
+// })
+
+// it('should redirect visitors to home when clicking on logo', () => {
+//   Object.defineProperty(window.location, 'href', {
+//   writable: true,
+//   value: '/listofbooks'
+// });
+//     // window.location.assign = jest.fn() // Create a spy
+//     const p = wrapper.find('.listofbooks')
+//     p.trigger('click')
+//     expect(window.location.assign).toHaveBeenCalledWith('/listofbooks"');
+//   })
 })
 
 

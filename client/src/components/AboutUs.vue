@@ -4,8 +4,8 @@
           <h4 style="margin-top: 5px">About Us</h4>
           <div class="" style="background-color: lightgreen; height: 50vh; margin-top: 20px"></div>
           <div class="circle">
-            <p style="color: white"> OffBook est un projet de fin d'études</p>
-            <p style="color: white"> Réalisé avec VueJS, MySQL et NodesJS</p>
+            <p style="color: white"> OffBook est un projet <br>de fin d'études</p>
+            <p style="color: white"> Réalisé avec <br>VueJS, <br>MySQL et <br>NodeJS</p>
           </div>
       </div>
       <div class="col-md-6" style="background-color: yellow; height: 85vh; margin-top: 20px">
@@ -26,11 +26,11 @@ export default {
   height: 60vh;
   width:60vh;
   position: absolute !important;
-  left: 20vh;
+  left: 25vh;
   top: 25vh;
 }
 .circle p {
   margin-top: 10vh;
-  margin-left: 10vh;
+  margin-left: 15vh;
 }
 </style>

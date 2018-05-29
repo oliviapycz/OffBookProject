@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="wrapper col-md-11">
+  <div class="wrapper-list col-md-11">
     <div class="title row justify-content-between">
       <div class="">
         <router-link :to="{ name: 'AddList', params: {id_user} }"><button class="btn btn-outline-success btn-sm" type="button" name="button">{{ windowWidth > 640 ? addListDesktop : addListMobile }}</button></router-link>
@@ -121,12 +121,10 @@ export default {
 </script>
 
 <style lang="css" scoped="">
-.wrapper {
-  /*border: 2px solid lightgreen;*/
-  margin: auto;
-  /*border-radius: 3px;*/
-  /*box-shadow: 2px 2px 5px lightgreen;*/
+.wrapper-list {
+  margin-top: 5px;
   padding: 5px;
+  min-height: 80vh !important;
 }
 .illustration {
   background-image: url(../../assets/library.jpg);
@@ -165,5 +163,19 @@ export default {
   left: 20%;
   top: 45%;
   margin: auto;
+}
+
+@media (min-width: 640px) {
+  .wrapper-list {
+    margin: 15px auto;;
+    min-height: 80vh !important;
+    margin-top: 10px;
+    padding: 5px;
+    width: 90%;
+  }
+  .paddingMobile {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
 }
 </style>

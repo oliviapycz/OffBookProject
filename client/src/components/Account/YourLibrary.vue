@@ -136,7 +136,7 @@ export default {
 
 <style lang="css" scoped="">
 .wrapper-library {
-  /*margin: 15px auto;*/
+  min-height: 80vh !important;
   margin-top: 5px;
   padding: 5px;
 }
@@ -174,10 +174,7 @@ export default {
   top: 45%;
   margin: auto;
 }
-h4 {
-  font-size: 20px;
-  line-height: 30px;
-}
+
 @media (min-width: 640px) {
   .wrapper-library {
     /*border: 2px solid lightgreen;*/
