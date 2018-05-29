@@ -10,7 +10,7 @@
 
       <div class="navbar-nav">
         <router-link data-toggle="collapse" data-target=".navbar-collapse" class="nav-item nav-link" active-class="active" exact to="/">Home</router-link>
-        <router-link data-toggle="collapse" data-target=".navbar-collapse" class="nav-item nav-link" active-class="active" exact to="/listofbooks">List of Books</router-link>
+        <router-link data-toggle="collapse" data-target=".navbar-collapse" class="nav-item nav-link l" active-class="active" exact to="/listofbooks">List of Books</router-link>
         <router-link data-toggle="collapse" data-target=".navbar-collapse" class="nav-item nav-link" active-class="active" exact to="/aboutus">About Us</router-link>
       </div>
 
@@ -98,6 +98,9 @@ export default {
 
 <style lang="css" scoped="">
 
+  router-link {
+    font-family: 'Titillium Web', sans-serif;
+  }
   nav {
     height: 11vh;
     box-shadow: 0 5px 7px lightgrey;

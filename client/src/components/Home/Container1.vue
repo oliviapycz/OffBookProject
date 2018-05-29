@@ -1,8 +1,10 @@
 <template lang="html">
   <div class="component row align-items-center">
-    <div class="col">
+    <div class="col" style="margin-top: 15vh !important">
       <h1>Put Some Order<br><br> In Your<br><br> Library</h1><br>
-      <button class="btn btn-success btn-sm "type="" name="button">Learn More</button>
+      <!-- <button class="btn btn-success btn-sm "type="" name="button">Learn More</button> -->
+      <img src="../../assets/mouse.png" alt="mouse" class="mouse">
+</a>
     </div>
   </div>
 </template>
@@ -24,7 +26,12 @@ export default {
     opacity: 0.8;
     text-align: center;
   }
-  button {
+
+  .mouse {
+    width:20vh !important;
+    height: 20vh !important;
+  }
+  /*button {
     width: 150px;
     height: 50px;
     border-radius: 30px;
@@ -39,12 +46,12 @@ export default {
     transition: 0.2s;
     background-color: #71423A;
     color: lightgreen;
-  }
+  }*/
 
 /******DESKTOP******/
   @media (min-width: 640px) {
     .component {
-      height: 90vh;
+      min-height: 90vh;
     }
   }
 </style>

@@ -158,9 +158,9 @@ export default {
 
 <style lang="css" scoped="">
 .wrapper-library {
-  /*margin: 15px auto;*/
   margin-top: 5px;
   padding: 5px;
+  min-height: 80vh !important;
 }
 .paddingMobile {
   padding-left: 0px !important;
@@ -196,17 +196,11 @@ export default {
   top: 45%;
   margin: auto;
 }
-h4 {
-  font-size: 20px;
-  line-height: 30px;
-}
+
 @media (min-width: 640px) {
   .wrapper-library {
-    /*border: 2px solid lightgreen;*/
     margin: 15px auto;
     margin-top: 10px;
-    /*border-radius: 3px;
-    box-shadow: 2px 2px 5px lightgreen;*/
     padding: 5px;
     width: 90%;
   }

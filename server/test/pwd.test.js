@@ -1,7 +1,7 @@
 const { encode, compare } = require('../auth/pwd')
 
 test('PWD encode', () => {
-  return encode('coucou')
+  return encode('motdepasse')
   .then( hash => expect(hash).toBeDefined() )
 })
 
@@ -13,20 +13,14 @@ test("PWD encode empty password generate error", () => {
   });
 });
 
-// test("PWD compare true", () => {
-//   return encode("coucou")
-//     .then(hash => compare("coucou", hash))
-//     .then(isMatch => expect(isMatch).toBe(true));
-// })
-
 test('PWD compare true', async () => {
-  const hash = await encode('coucou')
-  const isMatch = await compare('coucou', hash)
+  const hash = await encode('motdepasse')
+  const isMatch = await compare('motdepasse', hash)
   expect(isMatch).toBe(true)
 })
 
 test("PWD compare false", () => {
-  return encode("coucou")
-    .then(hash => compare("kiki", hash))
+  return encode("motdepasse")
+    .then(hash => compare("autremotdepasse", hash))
     .then(isMatch => expect(isMatch).toBe(false))
 });
