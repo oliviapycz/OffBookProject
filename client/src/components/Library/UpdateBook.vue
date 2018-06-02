@@ -95,7 +95,7 @@ export default {
         .then((response) => {
         /* eslint-disable */
           // console.log('this.routeId', this.routeId);
-          this.books = response.data;
+          this.books = response.data.rows;
           // this.books = [response.data.find((book) => book.id_book == this.routeId)];
         });
     },
@@ -141,7 +141,7 @@ export default {
         console.log('this.selectedFile === null');
         this.axios.put(bookApi, updatedFormData).then((updatedBooks) => {
           /* eslint-disable */
-          this.updatedFormData = updatedBooks.data;
+          this.updatedFormData = updatedBooks.data.rows;
         })
         .then(() => {
           this.$router.go(-1);
@@ -166,7 +166,7 @@ export default {
             console.log('updatedFormData',updatedFormData);
             this.axios.put(bookApi, updatedFormData).then((updatedBooks) => {
               /* eslint-disable */
-              this.updatedFormData = updatedBooks.data;
+              this.updatedFormData = updatedBooks.data.rows;
             });
           })
           .then(() => {

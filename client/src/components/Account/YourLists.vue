@@ -87,20 +87,24 @@ export default {
     fetchData () {
       this.axios.get('http://localhost:3000/' + this.id_user + '/book')
         .then(response => {
-          this.booksList = response.data;
+          this.booksList = response.data.rows;
+          console.log('booksList',this.booksList);
+          
         });
     },
     fetchDataList () {
       this.axios.get('http://localhost:3000/' + this.id_user + '/lists')
         .then(response => {
           this.lists = response.data;
+          console.log('lists', this.lists);
+          
          })
     },
     deleteList(id_list) {
       this.openedModal = false;
       this.axios.delete('http://localhost:3000/lists/' + id_list)
         .then(response => {
-          this.delists = response.data;
+          this.delists = response.data.rows;
         })
         .then(this.fetchData());
         // this.$router.go(-1);
@@ -109,7 +113,7 @@ export default {
       this.openedModal = true;
       this.axios.get('http://localhost:3000/lists/' + id_list)
         .then(response => {
-          return this.selectList = response.data;
+          return this.selectList = response.data.rows;
         });
     },
   },

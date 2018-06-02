@@ -96,8 +96,8 @@ export default {
         .then((response) => {
         /* eslint-disable */
           // console.log('this.routeId', this.routeId);
-          console.log('get response.data', response.data);
-          this.wishBooks = response.data;
+          console.log('get response.data', response.data.rows);
+          this.wishBooks = response.data.rows;
           console.log('this books ' + JSON.stringify(this.wishBooks));
           console.log(this.wishBooks[0].author_book);
         });

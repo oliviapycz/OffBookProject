@@ -36,24 +36,21 @@ const user = require('../Models/userModel');
 exports.registerCredentialsMiddleware = (req, res, next) => {
 
   const {username, email_user, password_user, picture_path_user} = req.body;
-  // console.log(req.body);
+  console.log('REGISTER', req.body);
   user.addUser({username, email_user, password_user, picture_path_user})
   .then(() => {
-    console.log('USER',user);
-    // return res.json(user) = user;
     return user
     .getUserByUsername(username)
   })
-  .then(user => {
-
-    req.user = user
-    next()
+  .then( user => {
+    console.log('user.rows[0]', user.rows[0]);
+    
+    return user.rows[0]
   })
-    // .then(user => {
-    //   req.user = user;
-    //   console.log('in regis', user);
-    //   console.log('in regis', user);
-    //   next();
-    // })
-    // .catch(err => res.status(401).json(err));
+  .then(user => {
+    req.user = user;
+    console.log('******user register*****', req.user);
+    next();
+  })
+    .catch(err => res.status(401).json(err));
 };

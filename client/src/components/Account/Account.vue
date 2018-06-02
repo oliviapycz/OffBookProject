@@ -213,13 +213,13 @@ export default {
       this.axios.get('http://localhost:3000/' + this.id_user + '/book')
         .then(response => {
           this.booksList = response.data;
-          this.books = response.data.slice(-3).reverse();
+          this.books = response.data.rows.slice(-3).reverse();
         });
     },
     fetchDataWish () {
       this.axios.get('http://localhost:3000/' + this.id_user + '/wishbook')
         .then(response => {
-          this.wishBooks = response.data.slice(-3).reverse();
+          this.wishBooks = response.data.rows.slice(-3).reverse();
         });
     },
     fetchDataList () {
@@ -232,7 +232,7 @@ export default {
       this.openedModal = false;
       this.axios.delete('http://localhost:3000/book/' + id_book)
         .then(response => {
-          this.books = response.data;
+          this.books = response.data.rows;
         })
         .then(() => {
           this.fetchData()
@@ -243,7 +243,7 @@ export default {
       this.openedWishModal = false;
       this.axios.delete('http://localhost:3000/wishbook/' + id_book)
         .then(response => {
-          this.books = response.data;
+          this.books = response.data.rows;
         })
         .then(()=> {
           this.fetchDataWish()
@@ -257,14 +257,14 @@ export default {
       this.axios.get('http://localhost:3000/book/' + id_book)
         .then(response => {
           console.log('response.data',JSON.stringify(response.data));
-          return this.selectBook = response.data;
+          return this.selectBook = response.data.rows;
         });
     },
     triggerModalWishBook (id_book) {
       this.openedWishModal = true;
       this.axios.get('http://localhost:3000/wishbook/' + id_book)
         .then(response => {
-          return this.selectWishBook = response.data;
+          return this.selectWishBook = response.data.rows;
         });
     },
     addToLibrary (id_book) {
@@ -272,7 +272,7 @@ export default {
       const urlApi = '/book';
       this.axios.get('http://localhost:3000/wishbook/' + id_book)
         .then(response => {
-          this.moveBooks = response.data;
+          this.moveBooks = response.data.rows;
         }).then(() => {
           this.axios.post('http://localhost:3000/' + pathId + urlApi, this.moveBooks[0])
         }).then(() => {
