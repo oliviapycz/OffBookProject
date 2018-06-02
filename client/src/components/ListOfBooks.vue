@@ -50,7 +50,7 @@ export default {
   min-height: 80vh !important;
 }
 .illustration {
-  background-image: url(../assets/library.webp);
+  background-image: url(../assets/library.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

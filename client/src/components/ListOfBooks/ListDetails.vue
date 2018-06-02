@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     manageCoverBook (pic) {
-      const fakeCover = 'background-image: url(../../static/images/library.webp)';
+      const fakeCover = 'background-image: url(../../static/images/library.jpg)';
       let cover = { 'background-image': 'url(../../static/uploads/covers/' + pic + ')' }
       if ( pic.length > 0) {
          return cover
@@ -71,7 +71,7 @@ export default {
   }
 
 .illustration {
-  background-image: url(../../assets/library.webp);
+  background-image: url(../../assets/library.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
