@@ -64,7 +64,11 @@ export default {
 
 <style lang="css" scoped="">
 /******MOBILE FIRST******/
-
+.wrapper-list-details {
+  margin-top: 5px;
+  padding: 5px;
+  min-height: 80vh !important;
+  }
 .illustration {
   background-image: url(../../assets/library.jpg);
   background-position: center;
@@ -93,10 +97,8 @@ h5 {
 /******DESKTOP******/
 @media (min-width: 640px) {
   .wrapper-list-details {
-    margin-top: 10px !important;
     margin: auto;
-    padding: 5px;
-    width: 80%;
+    width: 70%;
   }
   h5 {
     text-align: inherit;
