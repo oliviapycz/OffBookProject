@@ -69,7 +69,7 @@
 
 <script>
 /* eslint-disable */
-const urlApi = 'http://localhost:3000/users';
+const urlApi = '/users';
 import axios from 'axios';
 import { required, email, minValue, minLength, sameAs, requiredUnless } from 'vuelidate/lib/validators';
 export default {
@@ -87,7 +87,7 @@ export default {
       minLen: minLength(6),
       unique: val => {
         if (val === '') return true
-        return axios.get('http://localhost:3000/users/usernames/' + val )
+        return axios.get('/users/usernames/' + val )
         .then((res) => {
           console.log(res.data);
           // let fetchUsername = res.data;
@@ -103,7 +103,7 @@ export default {
       email,
       unique: val => {
         if (val === '') return true
-        return axios.get('http://localhost:3000/users/emails/' + val)
+        return axios.get('/users/emails/' + val)
           .then(res => {
             return Object.keys(res.data).length === 0
           })

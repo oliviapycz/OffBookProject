@@ -113,13 +113,13 @@ export default {
       }
     },
     fetchData () {
-      this.axios.get('http://localhost:3000/' + this.id_user + '/book')
+      this.axios.get('/' + this.id_user + '/book')
         .then(response => {
           this.books = response.data.rows;
         });
     },
     getUsername() {
-      this.axios.get('http://localhost:3000/users/' + this.id_user + '/username')
+      this.axios.get('/users/' + this.id_user + '/username')
       .then((res) => {
         this.username = res.data[0].username;
       })

@@ -118,7 +118,7 @@ export default {
     fetchData() {
       console.log('id_user',this.id_user);
       const pathId = this.id_user;
-      this.axios.get('http://localhost:3000/user/' + pathId)
+      this.axios.get('/user/' + pathId)
         .then(response => {
           this.users = response.data;
         });
@@ -130,7 +130,7 @@ export default {
       const updatedformData = {
         password_user: this.password_user.length === 0 ? this.users[0].password_user : this.password_user,
       };
-      this.axios.put('http://localhost:3000/user/' + pathId, updatedFormData).then((updatedPassword) => {
+      this.axios.put('/user/' + pathId, updatedFormData).then((updatedPassword) => {
         /* eslint-disable */
         this.updatedFormData = updatedPassword.data;
       });

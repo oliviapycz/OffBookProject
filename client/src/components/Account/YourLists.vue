@@ -85,7 +85,7 @@ export default {
   },
   methods: {
     fetchData () {
-      this.axios.get('http://localhost:3000/' + this.id_user + '/book')
+      this.axios.get('/' + this.id_user + '/book')
         .then(response => {
           this.booksList = response.data.rows;
           console.log('booksList',this.booksList);
@@ -93,7 +93,7 @@ export default {
         });
     },
     fetchDataList () {
-      this.axios.get('http://localhost:3000/' + this.id_user + '/lists')
+      this.axios.get('/' + this.id_user + '/lists')
         .then(response => {
           this.lists = response.data;
           console.log('lists', this.lists);
@@ -102,7 +102,7 @@ export default {
     },
     deleteList(id_list) {
       this.openedModal = false;
-      this.axios.delete('http://localhost:3000/lists/' + id_list)
+      this.axios.delete('/lists/' + id_list)
         .then(response => {
           this.delists = response.data.rows;
         })
@@ -111,7 +111,7 @@ export default {
     },
     triggerModal (id_list) {
       this.openedModal = true;
-      this.axios.get('http://localhost:3000/lists/' + id_list)
+      this.axios.get('/lists/' + id_list)
         .then(response => {
           return this.selectList = response.data.rows;
         });

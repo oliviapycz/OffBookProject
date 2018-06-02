@@ -19,7 +19,7 @@ Vue.use(Vuelidate);
 Vue.use(draggable);
 Vue.config.productionTip = false;
 
-axios.defaults.baseURL = 'http://localhost:3000/';
+axios.defaults.baseURL = '/';
 // axios.defaults.headers.common['Authorization'] = 'fasfdsa'
 axios.defaults.headers.get['Accepts'] = 'application/json';
 

@@ -115,14 +115,14 @@ export default {
       }
     },
     fetchData () {
-      this.axios.get('http://localhost:3000/' + this.id_user + '/wishbook')
+      this.axios.get('/' + this.id_user + '/wishbook')
         .then(response => {
           this.books = response.data.rows;
         });
     },
     deleteBook (id_book) {
       this.openedModal = false;
-      this.axios.delete('http://localhost:3000/wishbook/' + id_book)
+      this.axios.delete('/wishbook/' + id_book)
         .then(response => {
           this.books = response.data.rows;
         })
@@ -131,7 +131,7 @@ export default {
     },
     triggerModal (id_book) {
       this.openedModal = true;
-      this.axios.get('http://localhost:3000/wishbook/' + id_book)
+      this.axios.get('/wishbook/' + id_book)
         .then(response => {
           return this.selectBook = response.data.rows;
         });
@@ -139,13 +139,13 @@ export default {
     addToLibrary (id_book) {
       const pathId = this.id_user;
       const urlApi = '/book';
-      this.axios.get('http://localhost:3000/wishbook/' + id_book)
+      this.axios.get('/wishbook/' + id_book)
         .then(response => {
           this.books = response.data.rows;
         }).then(() => {
-          this.axios.post('http://localhost:3000/' + pathId + urlApi, this.books[0])
+          this.axios.post('/' + pathId + urlApi, this.books[0])
         }).then(() => {
-          this.axios.delete('http://localhost:3000/wishbook/' + id_book);
+          this.axios.delete('/wishbook/' + id_book);
           this.$router.go(-1);
         });
     }

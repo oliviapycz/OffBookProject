@@ -87,7 +87,7 @@ export default {
       //   this.$router.push('/account/' + this.id_user);
       // })
 
-      // this.axios.get('http://localhost:3000/users/usernames/' + this.username)
+      // this.axios.get('/users/usernames/' + this.username)
       //   .then((res) => {
       //     console.log('data', res.data);
       //     const fetchData = res.data;
@@ -95,7 +95,7 @@ export default {
       //       this.matchUsername = false;
       //       return console.log('this username was not found in our database');
       //     };
-      // this.axios.post('http://localhost:3000/login', formData)
+      // this.axios.post('/login', formData)
       //   .then((res) => {
       //     console.log('data send');
       //     console.log(res.data);

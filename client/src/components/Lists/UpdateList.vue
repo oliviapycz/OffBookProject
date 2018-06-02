@@ -118,7 +118,7 @@
 // eslint-disable-next-line
 import axios from 'axios';
 
-const urlApi = 'http://localhost:3000/wishbook/';
+const urlApi = '/wishbook/';
 export default {
   props: ['id_user'],
   data() {

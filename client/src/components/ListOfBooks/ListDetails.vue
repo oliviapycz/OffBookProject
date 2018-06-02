@@ -41,14 +41,14 @@ export default {
       }
     },
     // fetchBooks () {
-    //   this.axios.get('http://localhost:3000/book')
+    //   this.axios.get('/book')
     //     .then(response => {
     //       console.log('books', response.data);
     //       this.books = response.data;
     //     });
     // },
     fetchList () {
-      this.axios.get('http://localhost:3000/lists/' + this.id_list)
+      this.axios.get('/lists/' + this.id_list)
         .then(response => {
           this.lists = response.data;
           console.log('[===this.list===]', JSON.stringify(this.lists));

@@ -140,7 +140,7 @@ export default new Vuex.Store({
         console.log('fetch user no token');
         return
       }
-      axios.get('http://localhost:3000/user/' + this.state.id_user)
+      axios.get('/user/' + this.state.id_user)
       .then((res) => {
         console.log('fetched user', res.data);
         const user = res.data;

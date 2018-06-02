@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     fetchAllLists() {
-      this.axios.get('http://localhost:3000/lists')
+      this.axios.get('/lists')
         .then((response) => {
           this.allLists = response.data.rows;
           console.log('allLists', this.allLists);

@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     fetchData () {
-      this.axios.get('http://localhost:3000/' + this.id_user + '/book')
+      this.axios.get('/' + this.id_user + '/book')
         .then(response => {
           console.log(response.data.rows);
           this.books = response.data.rows;

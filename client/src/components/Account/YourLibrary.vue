@@ -66,7 +66,7 @@
 
 <script>
 /* eslint-disable */
-// const urlApi = 'http://localhost:3000/book';
+// const urlApi = '/book';
 // import DeleteBook from './../Library/DeleteBook';
 export default {
   // components: {
@@ -106,14 +106,14 @@ export default {
       }
     },
     fetchData () {
-      this.axios.get('http://localhost:3000/' + this.id_user + '/book')
+      this.axios.get('/' + this.id_user + '/book')
         .then(response => {
           this.books = response.data.rows;
         });
     },
     deleteBook (id_book) {
       this.openedModal = false;
-      this.axios.delete('http://localhost:3000/book/' + id_book)
+      this.axios.delete('/book/' + id_book)
         .then(response => {
           this.books = response.data.rows;
         })
@@ -122,7 +122,7 @@ export default {
     },
     triggerModal (id_book) {
       this.openedModal = true;
-      this.axios.get('http://localhost:3000/book/' + id_book)
+      this.axios.get('/book/' + id_book)
         .then(response => {
           return this.selectBook = response.data.rows;
         });
