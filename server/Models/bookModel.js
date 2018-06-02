@@ -3,23 +3,23 @@ const db = require('./db.js')
 module.exports = {
 
   getBooks() {
-    return db.connectQuery('SELECT * from books')
+    return db.query('SELECT * from books')
   },
 
   getWishBooks() {
-    return db.connectQuery('SELECT * from wishbooks')
+    return db.query('SELECT * from wishbooks')
   },
 
   getBooksById(id_book) {
-    return db.connectQuery(`SELECT * from books WHERE id_book = '${id_book}'`)
+    return db.query(`SELECT * from books WHERE id_book = '${id_book}'`)
   },
 
   getWishBooksById(id_book) {
-    return db.connectQuery(`SELECT * from wishbooks WHERE id_book = '${id_book}'`)
+    return db.query(`SELECT * from wishbooks WHERE id_book = '${id_book}'`)
   },
 
   addBooks({name_book, author_book, year_book, description_book, picture_path_book, user_id}) {
-    return db.connectQuery(`INSERT INTO
+    return db.query(`INSERT INTO
       books(
         name_book,
         author_book,
@@ -38,7 +38,7 @@ module.exports = {
   },
 
   addWishBooks({name_book, author_book, year_book, description_book, picture_path_book, user_id}) {
-    return db.connectQuery(`INSERT INTO
+    return db.query(`INSERT INTO
       wishbooks(
         name_book,
         author_book,
@@ -57,7 +57,7 @@ module.exports = {
   },
 
   addList({name_list, description_list, user_id, username}) {
-    return db.connectQuery(`INSERT INTO
+    return db.query(`INSERT INTO
       lists(
         name_list,
         description_list,
@@ -68,11 +68,11 @@ module.exports = {
         '${description_list}',
         '${user_id}',
         '${username}'
-    )`)
+    ) RETURNING id_list`)
   },
 
   associateBooksToList({list_id, book_id}) {
-    return db.connectQuery(`INSERT INTO
+    return db.query(`INSERT INTO
       list_books(
         list_id,
         book_id
@@ -83,7 +83,7 @@ module.exports = {
   },
 
   getListsByUserId(id_user) {
-    return db.connectQuery(`SELECT *
+    return db.query(`SELECT *
       FROM lists
       INNER JOIN list_books
       ON list_books.list_id = lists.id_list
@@ -93,7 +93,7 @@ module.exports = {
   },
 
   getListByListId(id_list) {
-    return db.connectQuery(`SELECT *
+    return db.query(`SELECT *
       FROM lists
       INNER JOIN list_books
       ON list_books.list_id = lists.id_list
@@ -103,11 +103,11 @@ module.exports = {
   },
 
   getAllLists() {
-    return db.connectQuery(`SELECT * FROM lists`)
+    return db.query(`SELECT * FROM lists`)
   },
 
   updateBooks({id_book, name_book, author_book, year_book, description_book, picture_path_book}) {
-    return db.connectQuery(`UPDATE
+    return db.query(`UPDATE
       books SET
         name_book='${name_book}',
         author_book='${author_book}',
@@ -118,7 +118,7 @@ module.exports = {
   },
 
   updateWishBooks({id_book, name_book, author_book, year_book, description_book, picture_path_book}) {
-    return db.connectQuery(`UPDATE
+    return db.query(`UPDATE
       wishbooks SET
         name_book='${name_book}',
         author_book='${author_book}',
@@ -129,36 +129,36 @@ module.exports = {
   },
 
   deleteBooks(id_book) {
-    return db.connectQuery(`DELETE
+    return db.query(`DELETE
       FROM books
       WHERE books.id_book = '${id_book}'`)
   },
 
   deleteWishBooks(id_book) {
-    return db.connectQuery(`DELETE
+    return db.query(`DELETE
       FROM wishbooks
       WHERE wishbooks.id_book = '${id_book}'`)
   },
 
   getBooksByUserId(id_user) {
-    return db.connectQuery(`SELECT * FROM books WHERE user_id = '${id_user}'`)
+    return db.query(`SELECT * FROM books WHERE user_id = '${id_user}'`)
   },
 
   getWishBooksByUserId(id_user) {
-    return db.connectQuery(`SELECT *
+    return db.query(`SELECT *
       FROM wishbooks
       WHERE wishbooks.user_id = '${id_user}'`)
   },
 
   getBooksByUserIdOrderByAuthor(id_user) {
-    return db.connectQuery(`SELECT *
+    return db.query(`SELECT *
       FROM books
       WHERE books.user_id = '${id_user}'
       ORDER BY author_book`)
   },
 
   getBooksByUserIdOrderByYear(id_user) {
-    return db.connectQuery(`SELECT *
+    return db.query(`SELECT *
       FROM books
       WHERE books.user_id = '${id_user}'
       ORDER BY year_book`)
@@ -167,11 +167,11 @@ module.exports = {
 
 
   // deleteBooks(callback) {
-  //   function connectQueryCallback (err, result, fields){
+  //   function queryCallback (err, result, fields){
   //     if (err) throw err;
   //     callback(result);
   //   }
-  //   connection.connectQuery(`DELETE`)
+  //   connection.query(`DELETE`)
   // }
 
 

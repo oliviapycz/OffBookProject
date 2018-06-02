@@ -115,7 +115,7 @@ export default {
     fetchData () {
       this.axios.get('http://localhost:3000/' + this.id_user + '/book')
         .then(response => {
-          this.books = response.data;
+          this.books = response.data.rows;
         });
     },
     getUsername() {
@@ -140,7 +140,11 @@ export default {
       axios.post(pathId + urlApi, formData).then((list) => {
         /* eslint-disable */
         // this.formData = list.data;
-        this.id_list = list.data.insertId;
+        console.log('formData', list.data);
+        
+        this.id_list = list.data[0].id_list;
+        console.log('id_list',this.id_list);
+        
       }).then(() =>{
         for (var i = 0; i < listIdBook.length; i++) {
           let formDataBooks = {

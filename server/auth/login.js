@@ -8,12 +8,12 @@ const checkCredentials = (username, password) => {
     .getUserByUsername(username)
     .then(user => user || Promise.reject({ error: "bad username" }))
     .then(user => {
-      console.log(user);
-      return user
+      console.log('USER IN LOGIN', user.rows[0]);
+      return user.rows[0]
     })
     .then(user =>
-      compare(password, user[0].password_user).then(
-        isMatch => (isMatch ? user[0] : Promise.reject({ error: "bad password" }))
+      compare(password, user.password_user).then(
+        isMatch => (isMatch ? user : Promise.reject({ error: "bad password" }))
       )
 
     )
@@ -31,9 +31,13 @@ exports.checkCredentials = checkCredentials;
 exports.checkCredentialsMiddleware = (req, res, next) => {
 
   const { username, password } = req.body;
+  console.log('LOG', req.body);
+  
   checkCredentials(username, password)
     .then(user => {
       req.user = user;
+      console.log('******user*****', user);
+      
       next();
     })
     .catch(err => res.status(401).json(err));

@@ -60,7 +60,7 @@ export default new Vuex.Store({
           localStorage.setItem('username', res.data.user.username)
           localStorage.setItem('userId', res.data.user.id)
           // localStorage.setItem('expirationDate', expirationDate)
-          dispatch('storeUser', authData)
+          // dispatch('storeUser', authData)
           const id_user = this.state.id_user;
           console.log('[store.js => register] getId', this.state.id_user);
           router.replace('/account/' + id_user);
@@ -126,14 +126,14 @@ export default new Vuex.Store({
       localStorage.removeItem('userId')
       router.replace('/')
     },
-    storeUser ({commit, state}, userData) {
-      if (!state.token) {
-        return
-      }
-      axios.post('/users', userData)
-        .then(res => console.log(res))
-        .catch(error => console.log(error))
-    },
+    // storeUser ({commit, state}, userData) {
+    //   if (!state.token) {
+    //     return
+    //   }
+    //   axios.post('/users', userData)
+    //     .then(res => console.log(res))
+    //     .catch(error => console.log(error))
+    // },
     fetchUser ({commit, state}) {
       // let user = []
       if (!state.token) {

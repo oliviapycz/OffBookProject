@@ -12,13 +12,15 @@ app.get('/book', (req, res) => {
 
 app.get('/wishbook', (req, res) => {
   model.getWishBooks()
-    .then(result => res.json(result))
+    .then(result => res.json(result.rows))
     .catch(err => res.json(err))
 });
 
 app.get('/lists', (req, res) => {
   model.getAllLists()
-    .then(result => res.json(result))
+    .then(result => {
+      res.json(result)
+    })
     .catch(err => res.json(err))
 });
 
@@ -26,7 +28,8 @@ app.get('/lists/:id_list', (req, res) => {
   const {id_list} = req.params;
   model.getListByListId(id_list)
     .then(result => {
-      restructureDataListWithBooks(result)
+      console.log('result', result.rows);
+      restructureDataListWithBooks(result.rows)
       res.json(lists)
     })
     .catch(err => res.json(err))
@@ -66,7 +69,7 @@ app.post('/:id_user/lists', (req, res) => {
   const {id_user} = req.params;
   const {name_list, description_list,  user_id, username} = req.body;
   model.addList({name_list, description_list, user_id, username})
-    .then(result => res.json(result))
+    .then(result => res.json(result.rows))
     .catch(err => res.json(err))
 });
 
@@ -105,7 +108,7 @@ app.get('/:id_user/lists', (req, res) => {
   const {id_user} = req.params;
   model.getListsByUserId(id_user)
     .then(result => {
-         restructureDataListWithBooks(result)
+         restructureDataListWithBooks(result.rows)
       res.json(lists)
     })
     .catch(err => res.json(err))

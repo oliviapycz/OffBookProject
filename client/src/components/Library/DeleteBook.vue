@@ -1,4 +1,4 @@
-<!-- <template lang="html">
+ <template lang="html">
   <div class="row">
     <div class="col-md-8 col-md-offset-2 modale" v-for="book in books">
       <p>Are you sure you want to delete this book?</p>
@@ -30,8 +30,8 @@ export default {
     fetchData () {
       this.axios.get('http://localhost:3000/' + this.id_user + '/book')
         .then(response => {
-          console.log(response.data);
-          this.books = response.data;
+          console.log(response.data.rows);
+          this.books = response.data.rows;
         });
     },
     closeModal () {
@@ -56,4 +56,4 @@ export default {
   top: 15%;
   margin: auto;
 }
-</style> -->
+</style> 

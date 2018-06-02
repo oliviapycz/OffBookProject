@@ -31,7 +31,7 @@ export default {
     fetchAllLists() {
       this.axios.get('http://localhost:3000/lists')
         .then((response) => {
-          this.allLists = response.data;
+          this.allLists = response.data.rows;
           console.log('allLists', this.allLists);
         })
     },

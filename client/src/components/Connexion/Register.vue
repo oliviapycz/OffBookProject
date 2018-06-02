@@ -130,7 +130,7 @@ export default {
         confirmPassword: this.confirmPassword,
       };
       /* eslint-disable */
-      console.log(formData);
+      console.log('in register.vue', formData);
       // axios.post(urlApi, formData).then((user) => {
       //   /* eslint-disable */
       //   this.formData = user.data;

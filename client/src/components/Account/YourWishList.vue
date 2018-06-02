@@ -117,14 +117,14 @@ export default {
     fetchData () {
       this.axios.get('http://localhost:3000/' + this.id_user + '/wishbook')
         .then(response => {
-          this.books = response.data;
+          this.books = response.data.rows;
         });
     },
     deleteBook (id_book) {
       this.openedModal = false;
       this.axios.delete('http://localhost:3000/wishbook/' + id_book)
         .then(response => {
-          this.books = response.data;
+          this.books = response.data.rows;
         })
         .then(this.fetchData());
         // this.$router.go(-1);
@@ -133,7 +133,7 @@ export default {
       this.openedModal = true;
       this.axios.get('http://localhost:3000/wishbook/' + id_book)
         .then(response => {
-          return this.selectBook = response.data;
+          return this.selectBook = response.data.rows;
         });
     },
     addToLibrary (id_book) {
@@ -141,7 +141,7 @@ export default {
       const urlApi = '/book';
       this.axios.get('http://localhost:3000/wishbook/' + id_book)
         .then(response => {
-          this.books = response.data;
+          this.books = response.data.rows;
         }).then(() => {
           this.axios.post('http://localhost:3000/' + pathId + urlApi, this.books[0])
         }).then(() => {
