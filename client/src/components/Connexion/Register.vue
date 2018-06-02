@@ -9,7 +9,7 @@
             type="text"
             id="username"
             class="form-control"
-            v-model="username"
+            v-model.lazy="username"
             @blur="$v.username.$touch()"
             placeholder="bouquiquineuse">
             <p v-if="!$v.username.required">This field must not be empty</p>
@@ -22,7 +22,7 @@
             type="email"
             id="email"
             class="form-control"
-            v-model="email"
+            v-model.lazy="email"
             @blur="$v.email.$touch()"
             placeholder="bouquiquineuse@offbooks.com">
             <p v-if="$v.email.$error || !$v.email.email">Please provide a valid email address</p>
