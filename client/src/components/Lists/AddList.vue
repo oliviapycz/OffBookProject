@@ -105,7 +105,7 @@ export default {
   methods: {
     manageCoverBook (pic) {
       const fakeCover = 'background-image: url(../../../static/images//library.jpg)';
-      let cover = { 'background-image': 'url(../../../static/uploads/covers/' + pic + ')' }
+      let cover = { 'background-image': 'url(../../static/uploads/covers/' + pic + ')' }
       if ( pic.length > 0) {
          return cover
       } else {
