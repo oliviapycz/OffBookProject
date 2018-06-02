@@ -94,13 +94,13 @@ app.post('/uploads', upload.single('cover'), (req, res) => {
 
 // création du serveur et connexion au port 3000
 
-app.listen(3000, err => {
-  // : app.listen(3000, function(err) {
-  if(err) {
-    console.log('No connexion');
-  }
-  console.log('Connexion good on port 3000!');
-})
+// app.listen(3000, err => {
+//   // : app.listen(3000, function(err) {
+//   if(err) {
+//     console.log('No connexion');
+//   }
+//   console.log('Connexion good on port 3000!');
+// })
 
 // pwd.encodePassword('password')
 //   .then( hash => pwd.comparePassword('otherPassword', hash))
@@ -123,3 +123,5 @@ pwd
 
   // .then(hash => pwd.comparePassword("bacon", hash))
 // .then(trueOrFalse => console.log("Coucou je suis : ", trueOrFalse));
+
+module.exports = app
