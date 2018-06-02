@@ -9,12 +9,13 @@
             type="text"
             id="username"
             class="form-control"
-            v-model="username"
+            v-model.lazy="username"
             @blur="$v.username.$touch()"
             placeholder="bouquiquineuse">
-            <p v-if="!$v.username.required">This field must not be empty</p>
+             <p v-if="!$v.username.required">This field must not be empty</p>
             <p v-if="!$v.username.minLen">You're username should have at least {{ $v.username.$params.minLen.min }} characters.</p>
             <p v-if="!$v.username.unique">This username is already taken.</p>
+            
         </div>
         <div class="form-group input" :class="{invalid: $v.email.$error}">
           <label for="email">Email Address :</label>
@@ -22,7 +23,7 @@
             type="email"
             id="email"
             class="form-control"
-            v-model="email"
+            v-model.lazy="email"
             @blur="$v.email.$touch()"
             placeholder="bouquiquineuse@offbooks.com">
             <p v-if="$v.email.$error || !$v.email.email">Please provide a valid email address</p>
