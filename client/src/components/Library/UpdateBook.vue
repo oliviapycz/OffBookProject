@@ -119,7 +119,7 @@ export default {
         }
     },
     manageCoverBook (pic) {
-      const fakeCover = '../../../../static/images/library.jpg';
+      const fakeCover = '../../../../static/images/library.webp';
       let cover =  '../../../../static/uploads/covers/' + pic
       if ( pic.length > 0) {
          return cover

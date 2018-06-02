@@ -19,7 +19,7 @@ export default {
   .component {
     color: white;
     height: 89vh;
-    background-image: url(../../assets/library.jpg);
+    background-image: url(../../assets/library.webp);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

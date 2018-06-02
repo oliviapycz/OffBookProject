@@ -104,7 +104,7 @@ export default {
   },
   methods: {
     manageCoverBook (pic) {
-      const fakeCover = 'background-image: url(../../../static/images//library.jpg)';
+      const fakeCover = 'background-image: url(../../../static/images//library.webp)';
       let cover = { 'background-image': 'url(../../static/uploads/covers/' + pic + ')' }
       if ( pic.length > 0) {
          return cover
@@ -243,7 +243,7 @@ h4 {
   min-height: 15vh;
 }
 .illustration {
-  background-image: url(../../assets/library.jpg);
+  background-image: url(../../assets/library.webp);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
