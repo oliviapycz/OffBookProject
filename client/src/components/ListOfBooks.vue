@@ -45,7 +45,9 @@ export default {
 <style lang="css" scoped="">
 /******MOBILE FIRST******/
 .wrapper-list {
-  /*margin: auto;*/
+  margin-top: 5px;
+  padding: 5px;
+  min-height: 80vh !important;
 }
 .illustration {
   background-image: url(../assets/library.jpg);
